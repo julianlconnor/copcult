@@ -1,0 +1,21 @@
+<div class="error-page">
+  <div class="claim-index">
+    <div class="header row">
+      <div class="venmo"></div>
+    </div>
+
+    <div class="container">
+      <h2>Sorry, an error occurred.</h2>
+      <p>
+        Our development team has been alerted and is working hard to fix this issue.
+      </p>
+      <p>
+        For further assistance, please feel free to <a href="">contact us</a>.
+      </p>
+
+      {{#if stack}}
+        <pre>{{stack}}</pre>
+      {{/if}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# Run JSXHint validation before commit.
+
+files=$(git diff-index --name-only --cached HEAD | grep -e "^.*\.js$")
+branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+pass=true
+
+if [ "$files" != "" ]; then
+    for file in ${files}; do
+        result=$(jsxhint ${file})
+
+        if [ "$result" != "" ]; then
+            echo $result
+            pass=false
+        fi
+    done
+fi
+
+if $pass && [ "$branch" == "master" ]; then
+  echo "Commits on master require all tests to be passing. Running tests..."
+  result=$(./node_modules/.bin/karma run)
+
+  if [ $? -eq 0 ]; then
+    echo "JSXHint precommit success and all tests passing."
+    exit 0
+  else
+    echo "There are failing tests. Please fix tests and try again."
+    exit 1
+  fi
+fi
+
+if $pass; then
+    echo "JSXHint precommit success."
+    exit 0
+else
+    echo "JSXHint precommit failed:"
+    echo "Some JavaScript / JSX files are invalid. Please fix errors and try committing again."
+    exit 1
+fi
