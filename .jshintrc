@@ -15,7 +15,7 @@
   // maxstatements: ...,
   // maxcomplexity: ...,
 
-  "maxlen": 100,
+  "maxlen": 160,
 
   "browser": true,
   "devel": true,

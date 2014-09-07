@@ -17,18 +17,18 @@ if [ "$files" != "" ]; then
     done
 fi
 
-if $pass && [ "$branch" == "master" ]; then
-  echo "Commits on master require all tests to be passing. Running tests..."
-  result=$(./node_modules/.bin/karma run)
-
-  if [ $? -eq 0 ]; then
-    echo "JSXHint precommit success and all tests passing."
-    exit 0
-  else
-    echo "There are failing tests. Please fix tests and try again."
-    exit 1
-  fi
-fi
+# if $pass && [ "$branch" == "master" ]; then
+#   echo "Commits on master require all tests to be passing. Running tests..."
+#   result=$(./node_modules/.bin/karma run)
+#
+#   if [ $? -eq 0 ]; then
+#     echo "JSXHint precommit success and all tests passing."
+#     exit 0
+#   else
+#     echo "There are failing tests. Please fix tests and try again."
+#     exit 1
+#   fi
+# fi
 
 if $pass; then
     echo "JSXHint precommit success."

@@ -40,7 +40,7 @@ define([
         return (
           <li>
             <div className={item.slug}>
-              <a href={item.url}>
+              <a href={item.url} target="_blank">
                 <img src={item.image} />{item.brand} - {item.name} - {item.price}
               </a>
             </div>
