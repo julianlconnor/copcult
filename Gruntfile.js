@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     configPath: path.join(process.cwd(), 'grunt/options'),
     config: {
       pkg: grunt.file.readJSON('package.json'),
-      stylesheetsDir: 'apps/shared/stylesheets',
+      stylesheetsDir: 'apps/webapp/public/stylesheets',
       aws: grunt.file.readJSON(path.join(process.env.HOME, 'grunt-aws.json'))
     }
   });

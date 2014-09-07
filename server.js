@@ -2,6 +2,7 @@
 * Import dependencies.
 */
 var http = require('http');
+var path = require('path');
 var express = require('express');
 var connect = require('connect');
 var exphbs = require('express3-handlebars');
@@ -30,6 +31,7 @@ app.configure(function(){
 
   app.use(app.router);
 
+  app.use(express.static(path.join(__dirname, 'build')));
   /*
   * Client side apps.
   */

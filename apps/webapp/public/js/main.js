@@ -29,6 +29,9 @@ require.config({
     'jsx': "shared/lib/jsx-requirejs-plugin/js/jsx",
     'JSXTransformer': 'shared/lib/react/JSXTransformer',
     'react.backbone': 'shared/lib/react.backbone/react.backbone',
+
+    'jquery.cookie': 'shared/lib/jquery.cookie/jquery.cookie',
+    'fastclick': 'shared/lib/fastclick/lib/fastclick'
   },
 
   shim: {

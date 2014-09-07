@@ -4,8 +4,7 @@ define([
   'app/public/js/routes/home_route',
 
   'fastclick'
-], function(BaseRouter, LoginRoute, NotificationRoute, LogoutRoute, ProfileRoute,
-            SettingsRoute, HomeRoute, FastClick) {
+], function(BaseRouter, HomeRoute, FastClick) {
 
   var AppRouter = BaseRouter.extend({
 

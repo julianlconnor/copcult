@@ -3,11 +3,10 @@ define([
   'react',
   'q',
   'shared/js/helpers/route',
-  'shabu/public/js/routes/login_route',
   'jsx!shared/js/errors/not_found',
   'jsx!shared/js/errors/application_error',
   'backbone.queryparams',
-], function(Backbone, React, q, Route, LoginRoute, NotFoundView, ApplicationErrorView) {
+], function(Backbone, React, q, Route, NotFoundView, ApplicationErrorView) {
 
   var BaseRouter = Backbone.Router.extend({
 
@@ -46,7 +45,8 @@ define([
 
     handleError: function(err) {
       if ( err.status === 401 ) {
-        this.execute(LoginRoute);
+        //this.execute(LoginRoute);
+        console.error('ERR AT 401 LOGIN');
       } else if ( err.status === 404 ||
                   err.status === 400 && err.responseJSON.error.code === 283 ) {
         this.render404();
