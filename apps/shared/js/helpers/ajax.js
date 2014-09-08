@@ -100,5 +100,7 @@ define([
   Backbone.sync = sync;
   Backbone.ajax = ajaxPatch;
 
+  window.ajax = ajax;
+
   return ajax;
 });

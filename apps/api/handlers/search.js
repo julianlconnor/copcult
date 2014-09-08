@@ -41,12 +41,14 @@ function filterResults(query) {
   });
 }
 
-module.exports = function(req, res) {
-  /**
-  * Return search fixtures for the time being.
-  */
-  console.log(req.param('query'));
-  res.json({
-    data: filterResults(req.param('query'))
-  });
+module.exports = {
+  post: function(req, res) {
+    /**
+    * Return search fixtures for the time being.
+    */
+    console.log(req.param('query'));
+    res.json({
+      data: filterResults(req.param('query'))
+    });
+  }
 };

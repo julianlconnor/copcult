@@ -13,3 +13,4 @@ grunt-aws.json
 .tm_properties
 test/test-results.xml
 *.compiled.css
+mydb.sqlite

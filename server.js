@@ -36,8 +36,9 @@ app.configure(function(){
   * Client side apps.
   */
   app.use(shared);
+  app.use('/api/v1', api);
+
   app.use(webapp); // last because of route catch-all (.*)
-  app.use(api);
 
 
   if ( !config.onDev() ) {
