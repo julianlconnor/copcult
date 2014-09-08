@@ -1,4 +1,6 @@
 var User = require('../models/user');
+var Promise = require('bluebird');
+var bcrypt = Promise.promisifyAll(require('bcrypt'));
 
 module.exports = {
 
@@ -7,15 +9,20 @@ module.exports = {
     var username = req.param('username');
     var password = req.param('password');
 
-    return new User({
-      email: email,
-      username: username,
-      password: password
-    }).save().then(function(user) {
-      res.json(user.omit('password'));
-    }).catch(function() {
-      console.error('Unable to create user');
-      res.send('Unable to create user');
+
+    return bcrypt.genSalt(10).then(function(err, salt) {
+      return bcrypt.hash(password, salt);
+    }).then(function(err, hash) {
+      return new User({
+        email: email,
+        username: username,
+        password: hash
+      }).save().then(function(user) {
+        res.json(user.omit('password'));
+      }).catch(function() {
+        console.error('Unable to create user');
+        res.send('Unable to create user');
+      });
     });
   },
 
