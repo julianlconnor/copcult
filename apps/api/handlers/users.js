@@ -10,17 +10,17 @@ module.exports = {
     var password = req.param('password');
 
 
-    return bcrypt.genSalt(10).then(function(err, salt) {
-      return bcrypt.hash(password, salt);
-    }).then(function(err, hash) {
+    return bcrypt.genSaltAsync(10).then(function(salt) {
+      return bcrypt.hashAsync(password, salt);
+    }).then(function(hash) {
       return new User({
         email: email,
         username: username,
         password: hash
       }).save().then(function(user) {
         res.json(user.omit('password'));
-      }).catch(function() {
-        console.error('Unable to create user');
+      }).catch(function(err) {
+        console.error('Unable to create user', err);
         res.send('Unable to create user');
       });
     });
