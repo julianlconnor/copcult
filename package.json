@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "express": "~3.4.7",
-    "connect-redis": "~1.4.5",
+    "connect-redis": "~1.4.7",
     "bower": "~1.2.7",
     "express3-handlebars": "~0.5.0",
     "less-middleware": "~0.1.12",
@@ -16,7 +16,6 @@
     "nodemailer": "~0.6.0",
     "node-statsd": "0.0.7",
     "underscore": "~1.5.2",
-    "request": "~2.33.0",
     "node-uuid": "^1.4.1",
     "handlebars": "~2.0.0-alpha.4",
     "cors": "~2.4.1",
@@ -25,7 +24,8 @@
     "bluebird": "~2.3.2",
     "bcrypt": "~0.8.0",
     "checkit": "~0.2.0-pre",
-    "underscore.string": "~2.3.3"
+    "underscore.string": "~2.3.3",
+    "request-promise": "~0.1.2"
   },
   "devDependencies": {
     "assemble": "^0.4.41",

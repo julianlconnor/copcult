@@ -5,6 +5,8 @@ define([
   'shared/js/helpers/ajax'
 ], function(React, ajax) {
 
+  var instagramOauthUrl = 'http://api.instagram.com/oauth/authorize/?client_id=215885fd870444219af2ef539a4cfb57&redirect_uri=http%3A%2F%2Flocalhost%3A9001%2Foauth%2Faccept_redirect&response_type=CODE';
+
   var HomeView = React.createClass({
 
     getInitialState: function() {
@@ -59,6 +61,7 @@ define([
       console.log('results', this.state.results);
       return (
         <div className="container">
+          <a href={instagramOauthUrl}>Connect with Instagram</a>
           <ul className="storefront-items">
             {this.renderStorefront()}
           </ul>
