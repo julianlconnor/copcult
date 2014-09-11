@@ -1,7 +1,0 @@
-{{#if env.production }}
-  <script src="/js/arbiter.min.js"></script>
-{{else }}
-  <script src="/w/shared/lib/requirejs/require.js"></script>
-  <script src="{{ js_path 'main.js' }}"></script>
-  <script>require(['marketing/public/js/app'], function(app){});</script>
-{{/if}}
