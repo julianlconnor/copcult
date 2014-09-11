@@ -61,7 +61,7 @@ define([
       console.log('results', this.state.results);
       return (
         <div className="container">
-          <a href={instagramOauthUrl}>Connect with Instagram</a>
+          <a href="/auth/instagram">Connect with Instagram</a>
           <ul className="storefront-items">
             {this.renderStorefront()}
           </ul>

@@ -46,7 +46,6 @@ module.exports = {
     /**
     * Return search fixtures for the time being.
     */
-    console.log(req.param('query'));
     res.json({
       data: filterResults(req.param('query'))
     });

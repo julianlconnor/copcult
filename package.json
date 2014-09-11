@@ -25,7 +25,9 @@
     "bcrypt": "~0.8.0",
     "checkit": "~0.2.0-pre",
     "underscore.string": "~2.3.3",
-    "request-promise": "~0.1.2"
+    "request-promise": "~0.1.2",
+    "passport": "~0.2.1",
+    "passport-instagram": "~0.1.2"
   },
   "devDependencies": {
     "assemble": "^0.4.41",

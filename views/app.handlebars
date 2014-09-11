@@ -1,10 +1,9 @@
-
 {{#if SERVE_COMPILED }}
-  <script src='/js/arbiter.min.js'></script>
+<script src="/js/arbiter.min.js"></script>
 {{else}}
-<script src='/w/lib/requirejs/require.js'></script>
-<script src='/w/js/main.js'></script>
-<script>require(['js/app'], function(app){});</script>
+<script src="/w/lib/requirejs/require.js"></script>
+<script src="/w/js/main.js"></script>
+<script>require(["js/app"], function(app){});</script>
 {{/if}}
 
 <div id="fb-root"></div>

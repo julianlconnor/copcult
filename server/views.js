@@ -10,8 +10,7 @@ var defaultLocals = {
   SERVE_COMPILED: NODE_ENV === 'production' ||
                   NODE_ENV === 'staging',
   ENV: NODE_ENV,
-  title: 'Arbiter',
-  config: config.client_side
+  title: 'Arbiter'
 };
 
 var appView = function (req, res) {

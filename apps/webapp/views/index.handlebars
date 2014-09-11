@@ -1,12 +1,5 @@
-<div id="content"></div>
-
-<script src='/shared/lib/requirejs/require.js'></script>
-<script src='/app/public/js/main.js'></script>
-<script>require(['app/public/js/app'], function(app){});</script>
-
-<script>
-  window.arbiter = {};
-  arbiter.ENV = '{{ENV}}';
-</script>
-
-<div id="fb-root"></div>
+{{#if user }}
+  {{> home/loggedIn }}
+{{else}}
+  {{> home/loggedOut }}
+{{/if}}

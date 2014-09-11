@@ -7,6 +7,7 @@ define([
   var NotFoundView = React.createClass({
 
     getInitialState: function() {
+      return {};
     },
 
     render: function() {

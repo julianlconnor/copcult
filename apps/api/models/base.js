@@ -23,9 +23,15 @@ var BaseModel = bookshelf.Model.extend({
       memo[_.str.camelize(key)] = val;
       return memo;
     }, {});
+  },
+
+  findOrCreate: function() {
+    return this.fetch({ require: true }).then(null, function() {
+      return this.save();
+    }.bind(this));
   }
 
-});
+}, {});
 
 module.exports = BaseModel;
 
