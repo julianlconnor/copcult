@@ -2,3 +2,17 @@
 <span>{{ user.instagramUsername }}</span>
 <a href="/logout">Logout</a>
 <div id="content"></div>
+
+
+<script>
+  if ( !window.arbiter ) {
+    window.arbiter = {};
+    window.arbiter.user = {};
+  }
+
+  window.arbiter.user.instagramAccessToken = '{{ user.instagramAccessToken }}';
+</script>
+
+<script src="/shared/lib/requirejs/require.js"></script>
+<script src="/app/js/main.js"></script>
+<script>require(['app/js/app'], function(app){});</script>

@@ -17,7 +17,7 @@ var home = function(req, res) {
   res.render('index', locals);
 };
 
-app.use('/app/', express.static(__dirname));
+app.use('/app/', express.static(path.join(__dirname, 'public')));
 app.get('/', home);
 
 module.exports = app;

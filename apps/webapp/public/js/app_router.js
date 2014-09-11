@@ -1,13 +1,10 @@
 define([
   'shared/js/base_router',
 
-  'app/public/js/routes/signup_route',
-  'app/public/js/routes/storefront_route',
-  'app/public/js/routes/home_route',
+  'app/js/routes/home_route',
 
   'fastclick'
-], function(BaseRouter, SignupRoute, StorefrontRoute, 
-            HomeRoute, FastClick) {
+], function(BaseRouter, HomeRoute, FastClick) {
 
   var AppRouter = BaseRouter.extend({
 
@@ -16,9 +13,6 @@ define([
     },
 
     routes: {
-      'signup': SignupRoute,
-      'muffs': StorefrontRoute,
-
       '': HomeRoute,
       '*notFound': 'render404'
     }

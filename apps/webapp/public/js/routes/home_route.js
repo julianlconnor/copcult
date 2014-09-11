@@ -2,13 +2,12 @@ define([
   'q',
   'react',
 
-  'jsx!app/public/js/views/home_view',
+  'jsx!app/js/views/home_view',
 
   'shared/js/helpers/route'
 ], function(q, React, HomeView, Route) {
-
   var HomeRoute = Route.extend({
-    title: 'Home | Venmo',
+    title: 'Home | Arbiter',
 
     initialize: function() {
     },
@@ -19,5 +18,4 @@ define([
   });
 
   return HomeRoute;
-
 });
