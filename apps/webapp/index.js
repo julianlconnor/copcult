@@ -12,7 +12,7 @@ app.engine('handlebars', exphbs({
 
 var home = function(req, res) {
   var locals = { 
-    user: req.user ? req.user.toJSON() : null
+    user: req.user ? JSON.stringify(req.user.omit('password')) : null,
   };
   res.render('index', locals);
 };

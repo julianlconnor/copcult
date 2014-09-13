@@ -10,7 +10,7 @@
     window.arbiter.user = {};
   }
 
-  window.arbiter.user.instagramAccessToken = '{{ user.instagramAccessToken }}';
+  window.arbiter.user = JSON.parse('{{{ user }}}');
 </script>
 
 <script src="/shared/lib/requirejs/require.js"></script>
