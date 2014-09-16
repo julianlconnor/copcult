@@ -10,6 +10,7 @@ exports.up = function(knex, Promise) {
     table.string('image');
     table.string('url');
     table.string('price'); // TODO: make this into a big int, price in pennies
+    table.string('slug');
   });
 };
 
