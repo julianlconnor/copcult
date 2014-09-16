@@ -25,6 +25,7 @@ define([
       var itemIDs = this.state.storefrontItems.map(function(item) {
         return item.id;
       });
+      console.log('itemIDs', itemIDs);
       var data = {
         instagramMediaID: this.props.item.id,
         items: itemIDs
@@ -32,7 +33,7 @@ define([
 
       return ajax({
         type: 'POST',
-        url: '/api/v1/storefront',
+        url: '/api/v1/storefronts',
         data: data
       }).then(this.redirectToStorefront,
               this.handleError);
