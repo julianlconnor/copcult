@@ -29,6 +29,9 @@ function instagramCallback(accessToken, refreshToken, profile, done) {
     instagramFollowers: profileJSON.counts.followed_by,
     instagramNumPosts: profileJSON.counts.media,
 
+    /**
+    * TODO: need a way to handle refreshing a user's token.
+    */
     instagramAccessToken: accessToken
   })
   .findOrCreate()
