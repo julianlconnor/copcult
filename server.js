@@ -65,6 +65,7 @@ app.configure(function(){
   app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/login', successRedirect: '/' }));
 
   app.get('/logout', function(req, res){
+    res.clearCookie('accessToken');
     req.logout();
     res.redirect('/');
   });

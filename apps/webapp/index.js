@@ -10,15 +10,21 @@ app.engine('handlebars', exphbs({
   partialsDir: path.join(__dirname, 'views', 'partials')
 }));
 
-var home = function(req, res) {
-  var locals = { 
-    user: req.user ? JSON.stringify(req.user.omit('password')) : null,
-  };
-  res.render('index', locals);
-};
-
 app.use('/app/', express.static(path.join(__dirname, 'public')));
-app.get('/', home);
+app.get('/', function(req, res) {
+
+  if ( !req.user ) {
+    return res.render('loggedOut');
+  }
+
+  if ( !req.cookies.accessToken ) {
+    res.cookie('accessToken', req.user.accessToken, { httpOnly: true });
+  }
+
+  return res.render('loggedIn', {
+    user: JSON.stringify(req.user.omit('password'))
+  });
+});
 
 module.exports = app;
 
