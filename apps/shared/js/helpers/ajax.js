@@ -21,7 +21,8 @@ define([
       }
 
       opts.data = _.extend({
-        '_xsrf': $.cookie('_xsrf')
+        '_xsrf': $.cookie('_xsrf'),
+        'user_id': window.arbiter.user.id
       }, opts.data);
 
       opts.data = JSON.stringify(opts.data);
@@ -73,6 +74,8 @@ define([
       */
       addToData('_xsrf', $.cookie('_xsrf'));
     }
+
+    addToData('user_id', window.arbiter.user.id);
 
     if ( settings.withCredentials === true ) {
       settings.xhrFields = { withCredentials: true };
