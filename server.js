@@ -77,14 +77,6 @@ app.configure(function(){
   }
 });
 
-function requiresAuth(req, res, next) {
-  if ( req.isAuthenticated() ) {
-    return next();
-  }
-
-  res.redirect('/');
-}
-
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Arbiter ~~ ' + app.get('port'));
 });

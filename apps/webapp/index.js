@@ -1,3 +1,5 @@
+var User = require('../api/models/user');
+
 var path = require('path');
 var exphbs = require('express3-handlebars');
 
@@ -23,6 +25,18 @@ app.get('/', function(req, res) {
 
   return res.render('loggedIn', {
     user: JSON.stringify(req.user.omit('password'))
+  });
+});
+
+app.get('/:username', function(req, res) {
+  new User({
+    instagramUsername: escape(req.param('username'))
+  })
+  .fetch({ withRelated: ['storefronts', 'storefronts.items'] })
+  .then(function(user) {
+    res.render('userProfile', user.toJSON());
+  }).catch(function() {
+    res.send(500, 'Storefront not found.');
   });
 });
 
