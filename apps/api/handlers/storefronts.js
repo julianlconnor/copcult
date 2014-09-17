@@ -13,13 +13,16 @@ module.exports = {
   get: function(req, res) {
     var storefrontId = req.param('storefrontId');
 
-    if ( !storefrontId ) {
+    if ( storefrontId === null ||
+         storefrontId === undefined ) {
       res.send(500, 'Unable to find storefront.');
     }
 
     return new Storefront({
-      storefrontId: storefrontId
-    }).fetch().then(function(storefront) {
+      id: storefrontId
+    })
+    .fetch({ withRelated: 'items' })
+    .then(function(storefront) {
       res.json(storefront.toJSON());
     }, function() {
       res.send(500, 'Unable to find storefront.');
@@ -28,9 +31,11 @@ module.exports = {
 
   post: function(req, res) {
     var items = req.param('items');
+    var userId = req.param('user_id');
     var instagramMediaID = req.param('instagramMediaID');
 
     return new Storefront({
+      userId: userId,
       instagramMediaId: instagramMediaID
     })
     .findOrCreate()
@@ -38,9 +43,10 @@ module.exports = {
       var storefrontId = storefront.get('id');
 
       return Promise.all(items.map(function(itemId) {
-
         /**
         * TODO: change this to sql EXISTS
+        * might want to use attach here
+        * http://bookshelfjs.org/#Model-attach
         */
         return new ItemStorefront({
           itemId: itemId,
