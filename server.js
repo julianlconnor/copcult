@@ -52,11 +52,11 @@ app.configure(function(){
   app.use(app.router);
 
   app.use(express.static(path.join(__dirname, 'build')));
-  /*
-  * Client side apps.
-  */
   app.use(shared);
-  app.use('/api/v1', api);
+  /**
+  * TODO: add an authentication layer.
+  */
+  app.use('/api/v1', /* TODO: check access token, */ api);
 
   /**
   * Passport.
