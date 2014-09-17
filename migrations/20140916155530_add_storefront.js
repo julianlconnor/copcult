@@ -2,7 +2,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('storefronts', function (table) {
-    table.increments();
+    table.increments('id');
     table.timestamps();
 
     table.integer('user_id');

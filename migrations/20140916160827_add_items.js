@@ -2,7 +2,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('items', function(table) {
-    table.increments();
+    table.increments('id');
     table.timestamps();
 
     table.string('brand'); // TODO: join with brand model

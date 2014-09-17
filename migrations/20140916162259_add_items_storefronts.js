@@ -2,8 +2,8 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('items_storefronts', function(table) {
-    table.integer('item_id').index();
-    table.integer('storefront_id').index();
+    table.integer('item_id').index().references('items.id');
+    table.integer('storefront_id').index().references('storefronts.id');
   });
 };
 
