@@ -16,6 +16,10 @@ define([
       };
     },
 
+    redirectToStorefront: function() {
+      window.location = '/' + window.arbiter.user.instagramUsername;
+    },
+
     createStorefront: function(event) {
       /**
       * TODO: replace with model
