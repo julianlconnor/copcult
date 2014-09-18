@@ -1,3 +1,8 @@
+<img src="{{ instagramMediaImageUrl }}" />
+<caption>{{ instagramMediaCaption }}</caption>
+
+<div>
 {{# each items }}
-  {{ name }}
+  {{> storefront/item }}
 {{/each}}
+</div>

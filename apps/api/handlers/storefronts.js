@@ -30,13 +30,19 @@ module.exports = {
   },
 
   post: function(req, res) {
+
     var items = req.param('items');
     var userId = req.param('user_id');
+
     var instagramMediaID = req.param('instagramMediaID');
+    var instagramMediaImageUrl = req.param('instagramMediaImageUrl');
+    var instagramMediaCaption = req.param('instagramMediaCaption');
 
     return new Storefront({
       userId: userId,
-      instagramMediaId: instagramMediaID
+      instagramMediaId: instagramMediaID,
+      instagramMediaImageUrl: instagramMediaImageUrl,
+      instagramMediaCaption: instagramMediaCaption
     })
     .findOrCreate()
     .then(function(storefront) {

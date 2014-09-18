@@ -25,9 +25,10 @@ define([
       var itemIDs = this.state.storefrontItems.map(function(item) {
         return item.id;
       });
-      console.log('itemIDs', itemIDs);
       var data = {
         instagramMediaID: this.props.item.id,
+        instagramMediaImageUrl: this.props.item.images.standard_resolution.url,
+        instagramMediaCaption: this.props.item.caption.text,
         items: itemIDs
       };
 

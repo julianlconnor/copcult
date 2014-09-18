@@ -34,6 +34,7 @@ define([
 
       return user.fetchMedia().then(function(media) {
         var items = media.map(function(item) {
+          console.log(item);
           return <li><img onClick={this.createStorefrontFlow.bind(null, item)} src={item.images.thumbnail.url} /></li>;
         }.bind(this));
 

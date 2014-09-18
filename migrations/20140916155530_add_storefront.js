@@ -6,7 +6,10 @@ exports.up = function(knex, Promise) {
     table.timestamps();
 
     table.integer('user_id');
+
     table.integer('instagram_media_id');
+    table.text('instagram_media_caption');
+    table.string('instagram_media_image_url');
   });
 };
 
