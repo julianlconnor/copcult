@@ -10,7 +10,7 @@ var Promise = require('bluebird');
 */
 module.exports = {
 
-  get: function(req, res) {
+  getOne: function(req, res) {
     /**
     * Get more info on one storefront.
     */
@@ -57,7 +57,7 @@ module.exports = {
     * Create a storefront.
     */
     var items = req.param('items');
-    var userId = req.param('user_id');
+    var userId = req.param('userId');
 
     var instagramMediaID = req.param('instagramMediaID');
     var instagramMediaImageUrl = req.param('instagramMediaImageUrl');
