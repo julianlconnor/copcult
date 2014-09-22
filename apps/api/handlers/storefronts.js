@@ -11,6 +11,9 @@ var Promise = require('bluebird');
 module.exports = {
 
   get: function(req, res) {
+    /**
+    * Get more info on one storefront.
+    */
     var storefrontId = req.param('storefrontId');
 
     if ( storefrontId === null ||
@@ -29,8 +32,30 @@ module.exports = {
     }).catch(console.error);
   },
 
-  post: function(req, res) {
+  getAll: function(req, res) {
+    /**
+    * Fetch all storefronts associated with the provided user id.
+    */
+    var userId = req.param('userId');
 
+    if ( userId === null ||
+         userId === undefined ) {
+      res.send(500, 'Invalid user id.');
+    }
+
+    return new Storefront({
+      userId: userId
+    }).fetchAll({
+      withRelated: 'items'
+    }).then(function(collection) {
+      res.json(collection.toJSON());
+    }).catch(console.error);
+  },
+
+  post: function(req, res) {
+    /**
+    * Create a storefront.
+    */
     var items = req.param('items');
     var userId = req.param('user_id');
 
