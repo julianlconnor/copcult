@@ -16,7 +16,7 @@ define([
 
     getInitialState: function() {
       return {
-        media: [],
+        instagramPosts: [],
         fetching: false,
         creatingStorefront: false
       };
@@ -35,16 +35,14 @@ define([
       });
 
       return q.all([
-        user.fetchMedia(),
+        user.fetchInstagramPosts(),
         user.fetchStorefronts()
-      ]).spread(function(media, storefronts) {
+      ]).spread(function(instagramPosts, storefronts) {
         /**
-        * Filter out media that already has a storefront.
+        * Filter out instagram posts that are associated to storefronts.
         */
-        var items;
-        var potentialStorefronts;
 
-        function isAStorefront(image) {
+        function isAStorefront(instagramPost) {
           /**
           * Default flag to true because the default case is that we want to
           * keep the item. Only remove it if it is found in storefronts.
@@ -52,22 +50,22 @@ define([
           var flag = true;
 
           _.each(storefronts, function(storefront) {
-            if ( image.id === storefront.instagramMediaId ) {
+            if ( instagramPost.id === storefront.instagramMediaId ) {
               flag = false;
             }
           });
 
           return flag;
         }
+        instagramPosts = _.filter(instagramPosts, isAStorefront);
 
-        potentialStorefronts = _.filter(media, isAStorefront);
         /**
         * Create elements out of the remaining elements.
         */
-        items = potentialStorefronts.map(function(item) {
+        instagramPosts = instagramPosts.map(function(instagramPost) {
           return (
             <li>
-              <img onClick={this.createStorefrontFlow.bind(null, item)} src={item.images.thumbnail.url} />
+              <img onClick={this.createStorefrontFlow.bind(null, instagramPost)} src={instagramPost.images.thumbnail.url} />
             </li>
           );
         }.bind(this));
@@ -81,7 +79,7 @@ define([
 
 
         this.setState({
-          media: items,
+          instagramPosts: instagramPosts,
           storefronts: storefronts,
           fetching: false
         });
@@ -106,7 +104,7 @@ define([
           </ul>
           <h3>Your Posts</h3>
           <ul>
-            {this.state.media}
+            {this.state.instagramPosts}
           </ul>
         </div>
       );

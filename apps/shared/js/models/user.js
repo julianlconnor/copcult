@@ -6,7 +6,7 @@ define([
 
   var UserModel = BaseModel.extend({
 
-    fetchMedia: function() {
+    fetchInstagramPosts: function() {
       var url = 'https://api.instagram.com/v1/users/' + this.get('instagramId') + '/media/recent/?access_token=' + this.get('instagramAccessToken');
       return ajax({
         type: 'GET',
