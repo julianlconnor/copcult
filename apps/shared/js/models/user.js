@@ -16,6 +16,15 @@ define([
       }).then(function(response) {
         return response.data;
       });
+    },
+
+    fetchStorefronts: function() {
+      return ajax({
+        type: 'GET',
+        url: '/api/v1/storefronts'
+      }).then(function(response) {
+        return response.data;
+      });
     }
 
   });

@@ -1,12 +1,14 @@
 /** @jsx React.DOM */
 
 define([
+  'q',
   'react',
+  'underscore',
 
   'jsx!app/js/components/storefront/create',
 
   'shared/js/models/user'
-], function(React, CreateStorefront, User) {
+], function(q, React, _, CreateStorefront, User) {
 
   var user = new User(window.arbiter.user);
 
@@ -32,14 +34,55 @@ define([
         fetching: true
       });
 
-      return user.fetchMedia().then(function(media) {
-        var items = media.map(function(item) {
-          console.log(item);
-          return <li><img onClick={this.createStorefrontFlow.bind(null, item)} src={item.images.thumbnail.url} /></li>;
+      return q.all([
+        user.fetchMedia(),
+        user.fetchStorefronts()
+      ]).spread(function(media, storefronts) {
+        /**
+        * Filter out media that already has a storefront.
+        */
+        var items;
+        var potentialStorefronts;
+
+        function isAStorefront(image) {
+          /**
+          * Default flag to true because the default case is that we want to
+          * keep the item. Only remove it if it is found in storefronts.
+          */
+          var flag = true;
+
+          _.each(storefronts, function(storefront) {
+            if ( image.id === storefront.instagramMediaId ) {
+              flag = false;
+            }
+          });
+
+          return flag;
+        }
+
+        potentialStorefronts = _.filter(media, isAStorefront);
+        /**
+        * Create elements out of the remaining elements.
+        */
+        items = potentialStorefronts.map(function(item) {
+          return (
+            <li>
+              <img onClick={this.createStorefrontFlow.bind(null, item)} src={item.images.thumbnail.url} />
+            </li>
+          );
         }.bind(this));
+        storefronts = storefronts.map(function(storefront) {
+          return (
+            <li>
+              <img src={storefront.instagramMediaImageUrl} />
+            </li>
+          );
+        });
+
 
         this.setState({
           media: items,
+          storefronts: storefronts,
           fetching: false
         });
       }.bind(this));
@@ -57,7 +100,14 @@ define([
       return (
         <div>
           <h1>Welcome back {user.get('instagramUsername')}</h1>
-          {this.state.media}
+          <h3>Your Storefronts</h3>
+          <ul>
+            {this.state.storefronts}
+          </ul>
+          <h3>Your Posts</h3>
+          <ul>
+            {this.state.media}
+          </ul>
         </div>
       );
     }

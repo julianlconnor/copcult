@@ -26,7 +26,9 @@ module.exports = {
     })
     .fetch({ withRelated: 'items' })
     .then(function(storefront) {
-      res.json(storefront.toJSON());
+      res.json({
+        data: storefront.toJSON()
+      });
     }, function() {
       res.send(500, 'Unable to find storefront.');
     }).catch(console.error);
@@ -48,7 +50,9 @@ module.exports = {
     }).fetchAll({
       withRelated: 'items'
     }).then(function(collection) {
-      res.json(collection.toJSON());
+      res.json({
+        data: collection.toJSON()
+      });
     }).catch(console.error);
   },
 
