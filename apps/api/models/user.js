@@ -11,6 +11,13 @@ var User = BaseModel.extend({
 
   storefronts: function() {
     return this.hasMany(Storefront);
+  },
+
+  fetchFeatured: function() {
+    /**
+    * TODO: implement functionality for fetching featured users.
+    */
+    return this.fetchAll();
   }
 
 }, {
