@@ -41,14 +41,14 @@
     "grunt-modernizr": "^0.5.2",
     "grunt-selenium-simple": "git://github.com/thomasboyt/grunt-selenium-simple#94da16ce9262371f6dc9edd1a1ff482c38a0c7ee",
     "grunt-shell": "~0.7.0",
-    "grunt-simple-mocha": "~0.4.0"
+    "grunt-simple-mocha": "~0.4.0",
+    "grunt": "~0.4.1"
   },
   "devDependencies": {
     "chai": "~1.8.1",
     "chai-as-promised": "~4.1.0",
     "colors": "~0.6.2",
     "find": "~0.1.5",
-    "grunt": "~0.4.1",
     "karma": "~0.12.8",
     "karma-chrome-launcher": "~0.1.4",
     "karma-firefox-launcher": "~0.1.3",
