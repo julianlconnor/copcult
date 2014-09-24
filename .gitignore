@@ -1,6 +1,5 @@
 .DS_Store
 .CAPUSER
-build/
 node_modules/
 apps/shared/lib/
 apps/marketing/data/env.json
