@@ -22,7 +22,7 @@ define([
 
       opts.data = _.extend({
         '_xsrf': $.cookie('_xsrf'),
-        'userId': window.arbiter.user.id
+        'userId': window.jaded.user.id
       }, opts.data);
 
       opts.data = JSON.stringify(opts.data);
@@ -75,7 +75,7 @@ define([
       addToData('_xsrf', $.cookie('_xsrf'));
     }
 
-    addToData('userId', window.arbiter.user.id);
+    addToData('userId', window.jaded.user.id);
 
     if ( settings.withCredentials === true ) {
       settings.xhrFields = { withCredentials: true };

@@ -58,7 +58,7 @@ require(['/base/apps/shared/js/main.js'], function() {
 
     /* global mocha */
     mocha.setup({ globals: ['XMLHttpRequest', 'jQuery*'] });
-    window.arbiter = {
+    window.jaded = {
       ENV: 'karma'
     };
     window.mixpanel = {

@@ -45,11 +45,17 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:username', function(req, res) {
+  /**
+  * TODO: make this the last possible route.
+  * TODO: blacklist of usernames
+  */
   new User({
     instagramUsername: escape(req.param('username'))
   })
-  .fetch({ withRelated: ['storefronts', 'storefronts.items'] })
-  .then(function(user) {
+  .fetch({ 
+    withRelated: ['storefronts', 'storefronts.items', 'storefronts.items.brand']
+  }).then(function(user) {
+    console.log(user.toJSON());
     res.render('userProfile', user.toJSON());
   }).catch(function() {
     res.send(500, 'Storefront not found.');

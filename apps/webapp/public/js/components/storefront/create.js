@@ -17,7 +17,7 @@ define([
     },
 
     redirectToStorefront: function() {
-      window.location = '/' + window.arbiter.user.instagramUsername;
+      window.location = '/' + window.jaded.user.instagramUsername;
     },
 
     createStorefront: function(event) {
@@ -29,10 +29,11 @@ define([
       var itemIDs = this.state.storefrontItems.map(function(item) {
         return item.id;
       });
+      var caption = this.props.item.caption ? this.props.item.caption.text : '';
       var data = {
         instagramMediaID: this.props.item.id,
         instagramMediaImageUrl: this.props.item.images.standard_resolution.url,
-        instagramMediaCaption: this.props.item.caption.text,
+        instagramMediaCaption: caption,
         items: itemIDs
       };
 

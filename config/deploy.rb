@@ -28,8 +28,8 @@ end
 set :deploy_via, :copy
 set :scm, 'git'
 set :git_enable_submodules, true
-set :repository, "git@bitbucket.com:muffs/arbiter.git"
-set :copy_cache, '/tmp/arbiter'
+set :repository, "git@bitbucket.com:muffs/jaded.git"
+set :copy_cache, '/tmp/jaded'
 set :copy_exclude, [".git", ".gitignore", ".gitmodules", ".DS_Store"] # We may want to exclude node_modules
 set :user, `cat ./.CAPUSER`.chomp
 set :use_sudo, true

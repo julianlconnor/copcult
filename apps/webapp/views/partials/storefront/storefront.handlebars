@@ -1,8 +1,11 @@
-<img src="{{ instagramMediaImageUrl }}" />
-<caption>{{ instagramMediaCaption }}</caption>
+<div class="storefront-row row">
+  <div class="col-md-8" style="background-image: url({{ instagramMediaImageUrl }}); background-size: cover; height: 500px;">
+    <div>{{ instagramMediaCaption }}</div>
+  </div>
 
-<div>
-{{# each items }}
-  {{> storefront/item }}
-{{/each}}
+  <div class="col-md-4">
+    {{# each items }}
+      {{> storefront/item }}
+    {{/each}}
+  </div>
 </div>

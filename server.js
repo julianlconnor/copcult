@@ -28,12 +28,12 @@ var app = express();
 app.configure(function(){
   app.set('port', process.env.PORT || 9001);
 
-  app.use(express.cookieParser('arbiteroftaste'));
+  app.use(express.cookieParser('imjaded'));
   app.use(express.session({
     store: new RedisStore({
       host: settings.redis.host,
       port: settings.redis.port,
-      prefix: 'arbiter:dev:sess:'
+      prefix: 'jaded:dev:sess:'
     })
   }));
 
@@ -47,7 +47,7 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser('arbiteroftaste'));
+  app.use(express.cookieParser('imjaded'));
 
   app.use(app.router);
 
@@ -78,5 +78,5 @@ app.configure(function(){
 });
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Arbiter ~~ ' + app.get('port'));
+  console.log('jaded ~~ ' + app.get('port'));
 });

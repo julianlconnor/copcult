@@ -10,7 +10,7 @@ define([
   'shared/js/models/user'
 ], function(q, React, _, CreateStorefront, User) {
 
-  var user = new User(window.arbiter.user);
+  var user = new User(window.jaded.user);
 
   var HomeView = React.createClass({
 

@@ -4,9 +4,9 @@ var lessPath = [
 ];
 
 module.exports = {
-  arbiter: {
+  jaded: {
     files: {
-      'build/stylesheets/arbiter.min.css': 'apps/webapp/public/stylesheets/main.less',
+      'build/stylesheets/jaded.min.css': 'apps/webapp/public/stylesheets/main.less',
     },
     options: {
       paths: lessPath

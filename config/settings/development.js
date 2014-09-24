@@ -6,7 +6,7 @@ module.exports = {
   session: {
     secret: 'testingonetwothree'
   },
-  host: 'http://dev.arbiter.supply',
+  host: 'http://dev.jaded.red',
 
   oauth: {
     facebook: {

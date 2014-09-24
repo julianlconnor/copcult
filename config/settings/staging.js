@@ -4,7 +4,7 @@ module.exports = {
     port: '6379'
   },
   session: {
-    secret: 'arbitersoftaste'
+    secret: 'imjaded'
   },
-  host: 'https://staging.arbiter.supply'
+  host: 'https://staging.jaded.red'
 };

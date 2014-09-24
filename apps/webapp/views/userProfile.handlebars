@@ -1,5 +1,14 @@
-<h1>{{instagramUsername}}</h1>
 
-{{# each storefronts }}
-  {{> storefront/storefront }}
-{{/each}}
+<div class="container">
+
+  <div class="row">
+    <div class="profile col-md-6 col-md-offset-3">
+      <img class="img-circle" src="{{ instagramProfilePicture }}" />
+      <h1>{{instagramUsername}}</h1>
+    </div>
+  </div>
+
+  {{# each storefronts }}
+    {{> storefront/storefront }}
+  {{/each}}
+</div>
