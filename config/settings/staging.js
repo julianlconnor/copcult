@@ -6,5 +6,12 @@ module.exports = {
   session: {
     secret: 'imjaded'
   },
-  host: 'https://staging.jaded.red'
+  host: 'https://staging.jaded.red',
+  oauth: {
+    instagram: {
+      clientID: process.env.INSTAGRAM_CLIENT_ID,
+      clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
+      callbackURL: process.env.INSTAGRAM_CALLBACK_URL
+    }
+  }
 };
