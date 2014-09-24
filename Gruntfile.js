@@ -10,6 +10,10 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.registerTask('build', [
+    'less',
+    'requirejs'
+  ]);
   grunt.registerTask('hooks', ['clean:gitHooks', 'shell:gitHooks']);
   grunt.loadTasks('grunt');
 };

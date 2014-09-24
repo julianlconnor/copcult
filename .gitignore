@@ -1,15 +1,6 @@
 .DS_Store
-.CAPUSER
 node_modules/
 apps/shared/lib/
-apps/marketing/data/env.json
 apps/shared/stylesheets/assets
 apps/shared/stylesheets/icons
-tmp/
-docs/
-grunt-aws.json
-.ruby-version
-.tm_properties
-test/test-results.xml
-*.compiled.css
-mydb.sqlite
+build/

@@ -3,7 +3,7 @@
 define([
   'react',
 
-  'jsx!app/js/components/storefront/addItems',
+  'jsx!webapp/public/js/components/storefront/addItems',
 
   'shared/js/helpers/ajax'
 ], function(React, AddItems, ajax) {

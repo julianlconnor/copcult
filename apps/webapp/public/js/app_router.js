@@ -1,7 +1,7 @@
 define([
   'shared/js/base_router',
 
-  'app/js/routes/home_route',
+  'webapp/public/js/routes/home_route',
 
   'fastclick'
 ], function(BaseRouter, HomeRoute, FastClick) {

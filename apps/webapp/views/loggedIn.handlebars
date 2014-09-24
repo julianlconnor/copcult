@@ -13,6 +13,10 @@
   window.jaded.user = JSON.parse('{{{ user }}}');
 </script>
 
-<script src="/shared/lib/requirejs/require.js"></script>
-<script src="/app/js/main.js"></script>
-<script>require(['app/js/app'], function(app){});</script>
+{{# if SERVE_COMPILED }}
+  <script src="/build/js/jaded.min.js"></script>
+{{ else }}
+  <script src="/shared/lib/requirejs/require.js"></script>
+  <script src="/webapp/public/js/main.js"></script>
+  <script>require(['webapp/public/js/app'], function(app) {});</script>
+{{/ if }}

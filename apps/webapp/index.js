@@ -1,10 +1,15 @@
 var User = require('../api/models/user');
+var settings = require('../../config/settings')();
 
+var _ = require('underscore');
 var path = require('path');
 var exphbs = require('express3-handlebars');
-
 var express = require('express');
 var app = express();
+
+var defaultLocal = {
+  SERVE_COMPILED: !settings.onDev()
+};
 
 function renderLoggedOut(req, res) {
   /**
@@ -13,15 +18,15 @@ function renderLoggedOut(req, res) {
   * TODO: actually make this featured. Will only fetch users for the time being.
   */
   return new User().fetchFeatured().then(function(collection) {
-    return res.render('loggedOut', {
+    return res.render('loggedOut', _.extend(defaultLocal, {
       featuredCurators: collection.toJSON()
-    });
+    }));
   });
 }
 function renderLoggedIn(req, res) {
-  return res.render('loggedIn', {
+  return res.render('loggedIn', _.extend(defaultLocal, {
     user: JSON.stringify(req.user.omit('password'))
-  });
+  }));
 }
 
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +35,7 @@ app.engine('handlebars', exphbs({
   partialsDir: path.join(__dirname, 'views', 'partials')
 }));
 
-app.use('/app/', express.static(path.join(__dirname, 'public')));
+app.use('/webapp/', express.static(__dirname));
 app.get('/', function(req, res) {
 
   if ( !req.user ) {

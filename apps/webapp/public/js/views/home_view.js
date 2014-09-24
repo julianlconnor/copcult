@@ -5,7 +5,7 @@ define([
   'react',
   'underscore',
 
-  'jsx!app/js/components/storefront/create',
+  'jsx!webapp/public/js/components/storefront/create',
 
   'shared/js/models/user'
 ], function(q, React, _, CreateStorefront, User) {

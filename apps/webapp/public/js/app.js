@@ -3,10 +3,11 @@ define([
   'backbone',
   'react',
 
-  'app/js/app_router',
+  'webapp/public/js/app_router',
 
   'shared/js/helpers/user_agent',
   'shared/js/helpers/link_events',
+
   'jsx!shared/js/errors/old_browser'
 ], function($, Backbone, React, AppRouter, ua, linkEvents, OldBrowserView) {
 
