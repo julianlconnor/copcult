@@ -27,14 +27,23 @@ var webapp = require('./apps/webapp');
 var app = express();
 app.configure(function(){
   app.set('port', process.env.PORT || 9001);
-
   app.use(express.cookieParser('imjaded'));
-  app.use(express.session({
-    store: new RedisStore({
+
+  var redisOptions;
+  if ( settings.onDev() ) {
+    redisOptions = {
       host: settings.redis.host,
       port: settings.redis.port,
       prefix: 'jaded:dev:sess:'
-    })
+    };
+  } else {
+    redisOptions = {
+      url: process.env.REDISTOGO_URL,
+      prefix: 'jaded:staging:sess:'
+    };
+  }
+  app.use(express.session({
+    store: new RedisStore(redisOptions)
   }));
 
   app.use(passport.initialize());
