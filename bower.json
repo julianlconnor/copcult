@@ -25,6 +25,6 @@
     "requirejs-text": "2.0.10",
     "backbone.validation": "https://raw.github.com/thedersen/backbone.validation/master/dist/backbone-validation-amd-min.js",
     "jquery.cookie": "~1.4.0",
-    "jsx-requirejs-plugin": "https://github.com/philix/jsx-requirejs-plugin.git#af8998a6b46ae38471df424e2b7bb3fbe9723c35",
+    "jsx-requirejs-plugin": "https://github.com/philix/jsx-requirejs-plugin.git#af8998a6b46ae38471df424e2b7bb3fbe9723c35"
   }
 }
