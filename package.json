@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "postinstall": "./node_modules/bower/bin/bower install --silent && ./node_modules/grunt-cli/bin/grunt build"
+    "postinstall": "echo 'n' | ./node_modules/bower/bin/bower install && ./node_modules/grunt-cli/bin/grunt build"
   },
   "dependencies": {
     "express": "~3.4.7",
