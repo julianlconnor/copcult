@@ -39,9 +39,7 @@
     "grunt-grunticon": "git://github.com/meyer/grunticon",
     "grunt-karma": "~0.8.3",
     "grunt-modernizr": "^0.5.2",
-    "grunt-selenium-simple": "git://github.com/thomasboyt/grunt-selenium-simple#94da16ce9262371f6dc9edd1a1ff482c38a0c7ee",
     "grunt-shell": "~0.7.0",
-    "grunt-simple-mocha": "~0.4.0",
     "grunt": "~0.4.1",
     "load-grunt-config": "~0.6.1",
     "load-grunt-tasks": "~0.2.0"
@@ -62,7 +60,6 @@
     "nodemon": "~0.7.10",
     "phantomjs": "1.9.7-15",
     "pngcrush": "0.0.5",
-    "grunt-s3": "~0.2.0-alpha.3",
     "q": "~1.0.1",
     "wd": "~0.2.13"
   }
