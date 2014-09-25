@@ -1,15 +1,7 @@
-var lessPath;
-if ( process.env.NODE_ENV.toLowerCase() !== 'development' ) {
-  lessPath = [
-    '/app/apps/shared/lib',
-    '/app/apps/shared/stylesheets'
-  ];
-} else { 
-  lessPath = [
-    './apps/shared/lib',
-    './apps/shared/stylesheets'
-  ];
-}
+var lessPath = [
+  './apps/shared/lib',
+  './apps/shared/stylesheets'
+];
 
 module.exports = {
   jaded: {
