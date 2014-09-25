@@ -24,7 +24,7 @@
     "define": false,
     "defineTest": false,
     "require": false,
-    "arbiter": false,
+    "jaded": false,
     "process": false,
     "__dirname": false,
     "module": false,
@@ -33,7 +33,6 @@
     "it": false,
 
     "beforeEach": false,
-    "afterEach": false,
-    "expect": false
+    "afterEach": false
   }
 }
