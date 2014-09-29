@@ -1,6 +1,18 @@
-// Update with your config settings.
+var path = require('path');
 
 module.exports = {
+
+  test: {
+    client: 'pg',
+    connection: {
+      host: '127.0.0.1',
+      port: '5432',
+      user: 'julianconnor',
+      password: '',
+      database: 'jaded_test'
+    },
+    directory: path.join(__dirname, 'migrations')
+  },
 
   development: {
     client: 'pg',

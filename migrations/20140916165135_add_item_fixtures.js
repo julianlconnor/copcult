@@ -46,15 +46,15 @@ exports.down = function(knex, Promise) {
   return Bluebird.all([
     new Brand({
       name: 'Zanerobe'
-    }).fetch().destroy(),
+    }).fetch().then(function(brand) { return brand.destroy(); }),
     new Item({
       name: 'Lineback White'
-    }).fetch().destroy(),
+    }).fetch().then(function(item) { return item.destroy(); }),
     new Item({
       name: 'Cube White'
-    }).fetch().destroy(),
+    }).fetch().then(function(item) { return item.destroy(); }),
     new Item({
       name: 'Tall Tee - Black Acid'
-    }).fetch().destroy()
+    }).fetch().then(function(item) { return item.destroy(); })
   ]);
 };

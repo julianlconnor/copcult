@@ -1,4 +1,4 @@
-var bookshelf = require('../../../config/bookshelf')();
+var bookshelf = require('../../../config/bookshelf')().bookshelf;
 
 var _ = require('underscore');
 _.str = require('underscore.string');

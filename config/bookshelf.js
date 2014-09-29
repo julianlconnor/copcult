@@ -1,29 +1,39 @@
 /**
 * DB Init.
 */
+var knex = null;
 var bookshelf = null;
 var knexConfig = require('../knexfile');
 
 module.exports = function() {
 
   if ( !bookshelf ) {
+    var env;
     var connection;
-    var env = process.env.NODE_ENV.toLowerCase();
 
-    if ( env === 'development' ) {
-      connection = knexConfig.development.connection;
+    if ( process.env.TESTING ) {
+      connection = knexConfig.test.connection;
     } else {
-      connection = knexConfig.staging.connection;
+      env = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
+      if ( env === 'development' ) {
+        connection = knexConfig.development.connection;
+      } else {
+        connection = knexConfig.staging.connection;
+      }
     }
 
-    bookshelf = require('bookshelf')(require('knex')({
+    knex = require('knex')({
       client: 'pg',
       debug: true,
       connection: connection
-    }));
+    });
+    bookshelf = require('bookshelf')(knex);
   }
 
-  return bookshelf;
+  return {
+    knex: knex,
+    bookshelf: bookshelf
+  };
 };
 
 

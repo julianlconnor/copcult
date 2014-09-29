@@ -2,7 +2,6 @@ var BaseModel = require('./base');
 var Storefront = require('./storefront');
 
 var Promise = require('bluebird');
-var bcrypt = Promise.promisifyAll(require('bcrypt'));
 
 var User = BaseModel.extend({
 

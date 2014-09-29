@@ -18,7 +18,7 @@ module.exports = {
 
     if ( storefrontId === null ||
          storefrontId === undefined ) {
-      res.send(500, 'Unable to find storefront.');
+      return res.send(500, 'Unable to find storefront.');
     }
 
     return new Storefront({
@@ -26,12 +26,12 @@ module.exports = {
     })
     .fetch({ withRelated: 'items' })
     .then(function(storefront) {
-      res.json({
+      return res.json({
         data: storefront.toJSON()
       });
     }, function() {
-      res.send(500, 'Unable to find storefront.');
-    }).catch(console.error);
+      return res.send(500, 'Unable to find storefront.');
+    });
   },
 
   getAll: function(req, res) {
@@ -53,7 +53,7 @@ module.exports = {
       res.json({
         data: collection.toJSON()
       });
-    }).catch(console.error);
+    });
   },
 
   post: function(req, res) {
@@ -94,8 +94,7 @@ module.exports = {
       * TODO: Return storefront json.
       */
       res.send(200, 'wap');
-    })
-    .catch(console.error);
+    });
   }
 
 };

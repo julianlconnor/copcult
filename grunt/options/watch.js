@@ -15,5 +15,13 @@ module.exports = {
   images: {
     files: ['apps/shared/images/**/*'],
     tasks: ['copy:images']
+  },
+
+  tests: {
+    files: [
+      'test/**/*.js',
+      'apps/api/**/*.js'
+    ],
+    tasks: ['simplemocha']
   }
 };

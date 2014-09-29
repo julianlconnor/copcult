@@ -11,7 +11,6 @@ module.exports = {
           data: collection.toJSON()
         });
       }, function(err) {
-        console.log(err);
         res.send(500, err);
       });
   }

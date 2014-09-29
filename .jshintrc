@@ -21,6 +21,7 @@
   "devel": true,
 
   "globals": {
+    "before": false,
     "define": false,
     "defineTest": false,
     "require": false,
