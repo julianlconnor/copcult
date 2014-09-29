@@ -3,3 +3,4 @@ node_modules/
 apps/shared/lib/
 apps/shared/stylesheets/assets
 apps/shared/stylesheets/icons
+build/
