@@ -10,12 +10,14 @@ module.exports = function() {
   if ( !bookshelf ) {
     var env;
     var connection;
+    var debug = false;
 
     if ( process.env.TESTING ) {
       connection = knexConfig.test.connection;
     } else {
       env = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
       if ( env === 'development' ) {
+        debug = true;
         connection = knexConfig.development.connection;
       } else {
         connection = knexConfig.staging.connection;
@@ -24,7 +26,7 @@ module.exports = function() {
 
     knex = require('knex')({
       client: 'pg',
-      debug: true,
+      debug: debug,
       connection: connection
     });
     bookshelf = require('bookshelf')(knex);
