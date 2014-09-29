@@ -1,27 +1,22 @@
 var path = require('path');
 var expect = require('expect.js');
+var Promise = require('bluebird');
 
-var knex = require(path.join(process.cwd(), 'config/bookshelf'))().knex;
+var migrate = require(path.join(process.cwd(), 'test/helpers/migrate'));
 var User = require(path.join(process.cwd(), 'apps/api/models/user'));
 
 describe('User Model', function() {
 
   before(function(done) {
-    knex.migrate.rollback().then(function() {
-      done();
-    });
+    migrate.rollback(done);
   });
 
   beforeEach(function(done) {
-    knex.migrate.latest().then(function() {
-      done();
-    });
+    migrate.latest(done);
   });
 
   afterEach(function(done) {
-    knex.migrate.rollback().then(function() {
-      done();
-    });
+    migrate.rollback(done);
   });
 
   it('can be instantiated', function() {
@@ -29,8 +24,14 @@ describe('User Model', function() {
   });
 
   it('can fetch', function(done) {
-    new User().fetchAll().then(function() {
-      done();
+    Promise.all([
+      new User().save(),
+      new User().save()
+    ]).then(function() {
+      new User().fetchAll().then(function(col) {
+        expect(col.toJSON().length).to.be(2);
+        done();
+      });
     });
   });
 

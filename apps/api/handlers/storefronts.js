@@ -45,9 +45,11 @@ module.exports = {
       res.send(500, 'Invalid user id.');
     }
 
-    return new Storefront({
+    return new Storefront()
+    .where({ 
       userId: userId
-    }).fetchAll({
+    })
+    .fetchAll({
       withRelated: 'items'
     }).then(function(collection) {
       res.json({

@@ -29,6 +29,10 @@ var BaseModel = bookshelf.Model.extend({
     return this.fetch({ require: true }).then(null, function() {
       return this.save();
     }.bind(this));
+  },
+
+  where: function(attrs) {
+    return bookshelf.Model.prototype.where.call(this, this.format(attrs));
   }
 
 }, {});
