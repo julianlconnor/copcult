@@ -1,49 +1,26 @@
 /** @jsx React.DOM */
 
 define([
-  'react',
-  'shared/js/helpers/ajax'
-], function(React, ajax) {
+  'react'
+], function(React) {
 
   var AddItems = React.createClass({
 
-    getInitialState: function() {
-      return {
-        results: []
-      };
-    },
-    
-    autoComplete: function() {
-      return ajax({
-        type: 'POST',
-        url: '/api/v1/search',
-        data: {
-          query: this.refs.search.getDOMNode().value
-        }
-      }).then(function(response) {
-        console.log('response', response.data);
-        this.setState({
-          results: response.data
-        });
-      }.bind(this));
-    },
+    addUrl: function(event) {
+      event.preventDefault();
+      var input = this.refs.search.getDOMNode();
 
-    renderResults: function() {
-      return this.state.results.map(function(result) {
-        return <li onClick={this.props.addItem.bind(null, result)}>{result.brand} - {result.name}</li>;
-      }.bind(this));
+      this.props.handleUrlAdded(input.value);
+      input.value = '';
     },
 
     render: function() {
-      console.log('results', this.state.results);
       return (
         <div className="container">
           <div className="input-wrapper">
-            <input type="text" placeholder="search.." onKeyUp={this.autoComplete} ref="search" />
+            <input type="text" placeholder="add a url.." ref="search" />
+            <button onClick={this.addUrl}>Add url</button>
           </div>
-          <ul className="results-wrapper">
-            {this.renderResults()}
-          </ul>
         </div>
       );
     }

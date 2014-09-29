@@ -9,4 +9,6 @@ app.get('/storefronts', require('./handlers/storefronts').getAll);
 app.get('/storefronts/:storefrontId', require('./handlers/storefronts').getOne);
 app.post('/storefronts', require('./handlers/storefronts').post);
 
+app.post('/items', require('./handlers/items').post);
+
 module.exports = app;

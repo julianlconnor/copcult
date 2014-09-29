@@ -1,18 +1,20 @@
 /** @jsx React.DOM */
 
 define([
+  'q',
   'react',
+  'underscore',
 
   'jsx!webapp/public/js/components/storefront/addItems',
 
   'shared/js/helpers/ajax'
-], function(React, AddItems, ajax) {
+], function(q, React, _, AddItems, ajax) {
 
   var CreateStorefront = React.createClass({
 
     getInitialState: function() {
       return {
-        storefrontItems: []
+        storefrontUrls: []
       };
     },
 
@@ -26,40 +28,49 @@ define([
       */
       event.preventDefault();
 
-      var itemIDs = this.state.storefrontItems.map(function(item) {
-        return item.id;
+      var items = this.state.storefrontUrls.map(function(url) {
+        return ajax({
+          type: 'POST',
+          url: '/api/v1/items',
+          data: {
+            url: url
+          }
+        });
       });
-      var caption = this.props.item.caption ? this.props.item.caption.text : '';
-      var data = {
-        instagramMediaID: this.props.item.id,
-        instagramMediaImageUrl: this.props.item.images.standard_resolution.url,
-        instagramMediaCaption: caption,
-        items: itemIDs
-      };
 
-      return ajax({
-        type: 'POST',
-        url: '/api/v1/storefronts',
-        data: data
-      }).then(this.redirectToStorefront,
-              this.handleError);
+      return q.all(items).spread(function() {
+        var itemIDs = _.map(arguments, function(item) {
+          return item.id;
+        });
+
+        var caption = this.props.item.caption ? this.props.item.caption.text : '';
+        var data = {
+          instagramMediaID: this.props.item.id,
+          instagramMediaImageUrl: this.props.item.images.standard_resolution.url,
+          instagramMediaCaption: caption,
+          items: itemIDs
+        };
+
+        return ajax({
+          type: 'POST',
+          url: '/api/v1/storefronts',
+          data: data
+        }).then(this.redirectToStorefront,
+                this.handleError);
+      }.bind(this));
     },
 
-    addItem: function(item) {
+    handleUrlAdded: function(url) {
       this.setState({
-        storefrontItems: this.state.storefrontItems.concat([item])
+        storefrontUrls: this.state.storefrontUrls.concat([url])
       });
     },
 
-    renderItems: function() {
-      return this.state.storefrontItems.map(function(item) {
+    renderUrls: function() {
+      return this.state.storefrontUrls.map(function(url) {
         return (
           <li>
-            <div className={item.slug}>
-              <a href={item.url} target="_blank">
-                <img src={item.image} />{item.brand} - {item.name} - {item.price}
-              </a>
-            </div>
+            <a href={url} target="_blank">{url}</a>
           </li>
         );
       });
@@ -71,8 +82,8 @@ define([
           <form className="create-storefront" onSubmit={this.createStorefront}>
             <h1>Creating a storefront!</h1>
             <img src={this.props.item.images.thumbnail.url} />
-            <ul className="storefront-items">{this.renderItems()}</ul>
-            <AddItems addItem={this.addItem} />
+            <ul className="storefront-items">{this.renderUrls()}</ul>
+            <AddItems handleUrlAdded={this.handleUrlAdded} urls={this.state.storefrontUrls} />
             <button>Create</button>
           </form>
         </div>
