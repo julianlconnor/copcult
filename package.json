@@ -42,7 +42,8 @@
     "grunt-shell": "~0.7.0",
     "grunt": "~0.4.1",
     "load-grunt-config": "~0.6.1",
-    "load-grunt-tasks": "~0.2.0"
+    "load-grunt-tasks": "~0.2.0",
+    "materialistic": "git+https://git@github.com/muffs/materialistic.git"
   },
   "devDependencies": {
     "chai": "~1.8.1",
@@ -62,6 +63,7 @@
     "pngcrush": "0.0.5",
     "q": "~1.0.1",
     "wd": "~0.2.13",
-    "grunt-simple-mocha": "~0.4.0"
+    "grunt-simple-mocha": "~0.4.0",
+    "sinon": "~1.10.3"
   }
 }

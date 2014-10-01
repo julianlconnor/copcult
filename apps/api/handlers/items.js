@@ -1,3 +1,5 @@
+var materialistic = require('materialistic');
+
 var Item = require('../models/item');
 
 module.exports = {
@@ -7,10 +9,16 @@ module.exports = {
     */
     var url = req.param('url');
 
-    new Item({
-      url: url
-    }).save().then(function(item) {
-      res.json(item.toJSON());
+      /**
+      * TODO: make this insane.
+      */
+    return materialistic(url).then(function(attrs) {
+      console.log(attrs);
+      return new Item(attrs).save().then(function(item) {
+        res.json(item.toJSON());
+      });
+    }).catch(function(err) {
+      console.error('An error occurred while scraping:', url, err);
     });
   }
 };
