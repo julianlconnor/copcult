@@ -1,14 +1,14 @@
 /** @jsx React.DOM */
 
 define([
-  'q',
+  'bluebird',
   'react',
   'lodash',
 
   'jsx!webapp/public/js/components/storefront/addItems',
 
-  'shared/js/helpers/ajax'
-], function(q, React, _, AddItems, ajax) {
+  'webapp/public/js/helpers/ajax'
+], function(Promise, React, _, AddItems, ajax) {
 
   var CreateStorefront = React.createClass({
 
@@ -38,7 +38,7 @@ define([
         });
       });
 
-      return q.all(items).spread(function() {
+      return Promise.all(items).spread(function() {
         var itemIDs = _.map(arguments, function(item) {
           return item.id;
         });

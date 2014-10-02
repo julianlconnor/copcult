@@ -11,27 +11,27 @@ require.config({
 
   baseUrl: '/',
   paths: {
-    'text': 'shared/lib/requirejs-text/text',
+    'text': 'webapp/public/js/lib/requirejs-text/text',
 
-    'jquery': 'shared/lib/jquery/jquery',
-    'q': 'shared/lib/q/q',
+    'jquery': 'webapp/public/js/lib/jquery/jquery',
+    'bluebird': 'webapp/public/js/lib/bluebird/js/browser/bluebird',
 
     // lodash + backbone
-    'lodash': 'shared/lib/lodash/lodash.min',
-    'underscore.string': 'shared/lib/underscore.string/lib/underscore.string',
-    'backbone': 'shared/lib/backbone/backbone',
-    'backbone.super': 'shared/lib/backbone-super/backbone-super/backbone-super',
-    'backbone.validation': 'shared/lib/backbone.validation/index',
-    'backbone.queryparams': 'shared/lib/backbone-query-parameters/backbone.queryparams',
+    'lodash': 'webapp/public/js/lib/lodash/lodash.min',
+    'underscore.string': 'webapp/public/js/lib/underscore.string/lib/underscore.string',
+    'backbone': 'webapp/public/js/lib/backbone/backbone',
+    'backbone.super': 'webapp/public/js/lib/backbone-super/backbone-super/backbone-super',
+    'backbone.validation': 'webapp/public/js/lib/backbone.validation/index',
+    'backbone.queryparams': 'webapp/public/js/lib/backbone-query-parameters/backbone.queryparams',
 
     // react
-    'react': "shared/lib/react/react-with-addons",
-    'jsx': "shared/lib/jsx-requirejs-plugin/js/jsx",
-    'JSXTransformer': 'shared/lib/react/JSXTransformer',
-    'react.backbone': 'shared/lib/react.backbone/react.backbone',
+    'react': "webapp/public/js/lib/react/react-with-addons",
+    'jsx': "webapp/public/js/lib/jsx-requirejs-plugin/js/jsx",
+    'JSXTransformer': 'webapp/public/js/lib/react/JSXTransformer',
+    'react.backbone': 'webapp/public/js/lib/react.backbone/react.backbone',
 
-    'jquery.cookie': 'shared/lib/jquery.cookie/jquery.cookie',
-    'fastclick': 'shared/lib/fastclick/lib/fastclick'
+    'jquery.cookie': 'webapp/public/js/lib/jquery.cookie/jquery.cookie',
+    'fastclick': 'webapp/public/js/lib/fastclick/lib/fastclick'
   },
 
   shim: {

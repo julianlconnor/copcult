@@ -1,15 +1,14 @@
 define([
   'backbone',
-  'q',
+  'bluebird',
   'lodash',
   'jquery',
-  'shared/js/helpers/error_reporting',
   'jquery.cookie'
-], function(Backbone, q, _, $, errorReporting) {
+], function(Backbone, Promise, _, $) {
 
   var originalSync = Backbone.sync;
   var originalAjax = Backbone.ajax;
-  var reportXHRError = errorReporting.reportXHRError;
+  var reportXHRError = function() {};
 
   function sync(method, model, opts) {
     if ( method === 'create' || method === 'update' ||
@@ -44,7 +43,7 @@ define([
       opts.data = JSON.stringify(opts.data);
     }
 
-    return q(originalAjax(opts)).then(null, function(err) {
+    return Promise(originalAjax(opts)).then(null, function(err) {
       reportXHRError(method, opts.url, err);
       throw err;
     });
@@ -94,7 +93,7 @@ define([
       delete settings.data;
     }
 
-    return q($.ajax(settings)).then(null, function(err) {
+    return Promise($.ajax(settings)).then(null, function(err) {
       reportXHRError(httpMethod, settings.url, err);
       throw err;
     });

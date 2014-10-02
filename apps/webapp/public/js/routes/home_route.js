@@ -1,11 +1,11 @@
 define([
-  'q',
+  'bluebird',
   'react',
 
   'jsx!webapp/public/js/views/home_view',
 
-  'shared/js/helpers/route'
-], function(q, React, HomeView, Route) {
+  'webapp/public/js/helpers/route'
+], function(Promise, React, HomeView, Route) {
   var HomeRoute = Route.extend({
     title: 'Home | Arbiter',
 

@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 define([
-  'q',
+  'bluebird',
   'react',
   'lodash',
 
@@ -9,7 +9,7 @@ define([
   'jsx!webapp/public/js/components/storefront/modify',
 
   'shared/js/models/user'
-], function(q, React, _, CreateStorefront, ModifyStorefront, User) {
+], function(Promise, React, _, CreateStorefront, ModifyStorefront, User) {
 
   var user = new User(window.jaded.user);
 
@@ -46,7 +46,7 @@ define([
         fetching: true
       });
 
-      return q.all([
+      return Promise.all([
         user.fetchInstagramPosts(),
         user.fetchStorefronts()
       ]).spread(function(instagramPosts, storefronts) {
@@ -54,7 +54,6 @@ define([
         * Filter out instagram posts that are associated to storefronts.
         */
 
-       debugger;
         function isAStorefront(instagramPost) {
           /**
           * Default flag to true because the default case is that we want to

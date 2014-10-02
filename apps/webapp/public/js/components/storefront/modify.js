@@ -5,7 +5,7 @@ define([
 
   'jsx!webapp/public/js/components/item',
 
-  'shared/js/helpers/ajax'
+  'webapp/public/js/helpers/ajax'
 ], function(React, ajax) {
 
   var CreateStorefront = React.createClass({
