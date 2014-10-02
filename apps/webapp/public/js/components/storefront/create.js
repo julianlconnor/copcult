@@ -3,7 +3,7 @@
 define([
   'q',
   'react',
-  'underscore',
+  'lodash',
 
   'jsx!webapp/public/js/components/storefront/addItems',
 

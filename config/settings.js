@@ -1,7 +1,7 @@
 /*
 * Lazily loads settings depending on the environment.
 */
-var _ = require('underscore');
+var _ = require('lodash');
 var constants = require('./constants');
 
 var settings = function() {

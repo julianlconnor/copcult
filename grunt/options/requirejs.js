@@ -11,7 +11,7 @@ module.exports = {
       paths: {
         'jquery': 'shared/lib/jquery/jquery.min',
         'react': 'shared/lib/react/react-with-addons.min',
-        'underscore': 'shared/lib/underscore/underscore-min',
+        'lodash': 'shared/lib/lodash/lodash.min',
         'jquery-ui': 'shared/lib/jquery-ui/ui/minified/jquery-ui.min'
       },
 

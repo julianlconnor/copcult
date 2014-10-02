@@ -15,8 +15,8 @@ require.config({
     'jquery': 'shared/lib/jquery/jquery',
     'q': 'shared/lib/q/q',
 
-    // underscore + backbone
-    'underscore': 'shared/lib/underscore/underscore',
+    // lodash + backbone
+    'lodash': 'shared/lib/lodash/lodash.min',
     'underscore.string': 'shared/lib/underscore.string/lib/underscore.string',
     'backbone': 'shared/lib/backbone/backbone',
     'backbone.super': 'shared/lib/backbone-super/backbone-super/backbone-super',
@@ -59,7 +59,7 @@ require.config({
     'jquery-ui': {
       deps: ['jquery']
     },
-    'underscore': {
+    'lodash': {
       exports: '_'
     },
     'jquery.payment': ['jquery'],

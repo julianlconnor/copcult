@@ -1,5 +1,5 @@
 define([
-  'underscore',
+  'lodash',
   'shared/js/models/base',
   'shared/js/helpers/ajax'
 ], function(_, BaseModel, ajax) {

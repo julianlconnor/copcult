@@ -3,12 +3,13 @@
 define([
   'q',
   'react',
-  'underscore',
+  'lodash',
 
   'jsx!webapp/public/js/components/storefront/create',
+  'jsx!webapp/public/js/components/storefront/modify',
 
   'shared/js/models/user'
-], function(q, React, _, CreateStorefront, User) {
+], function(q, React, _, CreateStorefront, ModifyStorefront, User) {
 
   var user = new User(window.jaded.user);
 
@@ -18,14 +19,25 @@ define([
       return {
         instagramPosts: [],
         fetching: false,
-        creatingStorefront: false
+        creatingStorefront: false,
+        modifyingStorefront: false,
+        storefront: null
       };
     },
 
     createStorefrontFlow: function(item) {
       this.setState({
         creatingStorefront: true,
+        modifyingStorefront: false,
         instagramPost: item
+      });
+    },
+
+    modifyStorefrontFlow: function(storefront) {
+      this.setState({
+        creatingStorefront: false,
+        modifyingStorefront: true,
+        storefront: storefront
       });
     },
 
@@ -42,6 +54,7 @@ define([
         * Filter out instagram posts that are associated to storefronts.
         */
 
+       debugger;
         function isAStorefront(instagramPost) {
           /**
           * Default flag to true because the default case is that we want to
@@ -71,11 +84,11 @@ define([
         }.bind(this));
         storefronts = storefronts.map(function(storefront) {
           return (
-            <li>
+            <li onClick={this.modifyStorefrontFlow.bind(null, storefront)}>
               <img src={storefront.instagramMediaImageUrl} />
             </li>
           );
-        });
+        }.bind(this));
 
 
         this.setState({
@@ -83,7 +96,9 @@ define([
           storefronts: storefronts,
           fetching: false
         });
-      }.bind(this));
+      }.bind(this)).catch(function() {
+        debugger;
+      });
     },
 
     render: function() {
@@ -93,6 +108,10 @@ define([
 
       if ( this.state.creatingStorefront ) {
         return <CreateStorefront item={this.state.instagramPost} />;
+      }
+
+      if ( this.state.modifyingStorefront ) {
+        return <ModifyStorefront storefront={this.state.storefront} />;
       }
 
       return (

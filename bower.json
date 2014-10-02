@@ -4,7 +4,6 @@
   "dependencies": {
     "backbone": "1.1.1",
     "requirejs": "~2.1.9",
-    "underscore": "~1.5.0",
     "jquery": "~2.0.2",
     "expect.js": "https://github.com/venmo/expect.js.git",
     "bootstrap": "~3.1.1",
@@ -20,6 +19,7 @@
     "jquery.cookie": "~1.4.0",
     "jsx-requirejs-plugin": "https://github.com/philix/jsx-requirejs-plugin.git#af8998a6b46ae38471df424e2b7bb3fbe9723c35",
     "requirejs-text": "2.0.10",
-    "react.backbone": "~0.5.0"
+    "react.backbone": "~0.5.0",
+    "lodash": "~2.4.1"
   }
 }

@@ -3,7 +3,7 @@ var app = module.exports = express();
 var config = require('../config/settings')();
 
 var NODE_ENV = ( process.env.NODE_ENV || 'test' ).toLowerCase();
-var _ = require('underscore');
+var _ = require('lodash');
 
 var defaultLocals = {
   env: process.env,

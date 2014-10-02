@@ -1,7 +1,7 @@
 define([
   'backbone',
   'q',
-  'underscore',
+  'lodash',
   'jquery',
   'shared/js/helpers/error_reporting',
   'jquery.cookie'
