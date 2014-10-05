@@ -31,7 +31,7 @@ function renderLoggedIn(req, res) {
 
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
-  defaultLayout: 'base',
+  defaultLayout: path.join(__dirname, 'views', 'layouts', 'base'),
   partialsDir: path.join(__dirname, 'views', 'partials')
 }));
 
