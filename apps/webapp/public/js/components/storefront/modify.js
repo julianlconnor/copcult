@@ -3,10 +3,8 @@
 define([
   'react',
 
-  'jsx!webapp/public/js/components/item',
-
-  'webapp/public/js/helpers/ajax'
-], function(React, ajax) {
+  'jsx!webapp/public/js/components/item'
+], function(React, Item) {
 
   var CreateStorefront = React.createClass({
 
@@ -17,7 +15,7 @@ define([
     },
 
     render: function() {
-      var storefront this.props.storefront;
+      var storefront = this.props.storefront;
 
       return (
         <div>

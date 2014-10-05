@@ -1,7 +1,7 @@
 var User = require('../api/models/user');
 var settings = require('../../config/settings')();
 
-var _ = require('lodash');
+var _ = require('underscore');
 var path = require('path');
 var exphbs = require('express3-handlebars');
 var express = require('express');

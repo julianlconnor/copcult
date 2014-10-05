@@ -3,12 +3,12 @@
 define([
   'bluebird',
   'react',
-  'lodash',
+  'underscore',
 
   'jsx!webapp/public/js/components/storefront/create',
   'jsx!webapp/public/js/components/storefront/modify',
 
-  'shared/js/models/user'
+  'webapp/public/js/models/user'
 ], function(Promise, React, _, CreateStorefront, ModifyStorefront, User) {
 
   var user = new User(window.jaded.user);

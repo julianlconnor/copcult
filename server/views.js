@@ -1,9 +1,8 @@
 var express = require('express');
 var app = module.exports = express();
-var config = require('../config/settings')();
 
 var NODE_ENV = ( process.env.NODE_ENV || 'test' ).toLowerCase();
-var _ = require('lodash');
+var _ = require('underscore');
 
 var defaultLocals = {
   env: process.env,

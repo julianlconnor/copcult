@@ -1,7 +1,7 @@
 define([
   'backbone',
   'bluebird',
-  'lodash',
+  'underscore',
   'jquery',
   'jquery.cookie'
 ], function(Backbone, Promise, _, $) {
@@ -93,7 +93,7 @@ define([
       delete settings.data;
     }
 
-    return Promise($.ajax(settings)).then(null, function(err) {
+    return Promise.resolve($.ajax(settings)).then(null, function(err) {
       reportXHRError(httpMethod, settings.url, err);
       throw err;
     });

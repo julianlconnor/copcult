@@ -1,6 +1,6 @@
 var bookshelf = require('../../../config/bookshelf')().bookshelf;
 
-var _ = require('lodash');
+var _ = require('underscore');
 _.str = require('underscore.string');
 
 var BaseModel = bookshelf.Model.extend({

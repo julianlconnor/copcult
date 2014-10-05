@@ -43,7 +43,7 @@
     "load-grunt-config": "~0.6.1",
     "load-grunt-tasks": "~0.2.0",
     "materialistic": "git+https://git@github.com/muffs/materialistic.git",
-    "lodash": "~2.4.1"
+    "underscore": "~1.7.0"
   },
   "devDependencies": {
     "chai": "~1.8.1",

@@ -21,7 +21,6 @@ var settings = require('./config/settings')();
 * Rack style apps.
 */
 var api = require('./apps/api');
-var shared = require('./apps/shared');
 var webapp = require('./apps/webapp');
 
 var app = express();
@@ -61,7 +60,7 @@ app.configure(function(){
   app.use(app.router);
 
   app.use(express.static(path.join(__dirname, 'build')));
-  app.use(shared);
+
   /**
   * TODO: add an authentication layer.
   */

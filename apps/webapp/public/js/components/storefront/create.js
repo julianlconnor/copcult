@@ -3,7 +3,7 @@
 define([
   'bluebird',
   'react',
-  'lodash',
+  'underscore',
 
   'jsx!webapp/public/js/components/storefront/addItems',
 

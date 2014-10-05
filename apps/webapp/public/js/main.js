@@ -17,7 +17,7 @@ require.config({
     'bluebird': 'webapp/public/js/lib/bluebird/js/browser/bluebird',
 
     // lodash + backbone
-    'lodash': 'webapp/public/js/lib/lodash/lodash.min',
+    'underscore': 'webapp/public/js/lib/underscore/underscore-min',
     'underscore.string': 'webapp/public/js/lib/underscore.string/lib/underscore.string',
     'backbone': 'webapp/public/js/lib/backbone/backbone',
     'backbone.super': 'webapp/public/js/lib/backbone-super/backbone-super/backbone-super',
@@ -41,7 +41,7 @@ require.config({
     'jquery-ui': {
       deps: ['jquery']
     },
-    'lodash': {
+    'underscore': {
       exports: '_'
     },
     'jquery.payment': ['jquery'],

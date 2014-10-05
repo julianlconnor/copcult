@@ -3,16 +3,16 @@ module.exports = {
   jaded: {
     options: {
       baseUrl: 'apps/',
-      name: 'shared/lib/requirejs/require',
+      name: 'webapp/public/js/lib/requirejs/require',
       out: 'build/js/jaded.min.js',
       wrap: true,
 
       // use preoptimized builds of dependencies
       paths: {
-        'jquery': 'shared/lib/jquery/jquery.min',
-        'react': 'shared/lib/react/react-with-addons.min',
-        'lodash': 'shared/lib/lodash/lodash.min',
-        'jquery-ui': 'shared/lib/jquery-ui/ui/minified/jquery-ui.min'
+        'jquery': 'webapp/public/js/lib/jquery/jquery.min',
+        'react': 'webapp/public/js/lib/react/react-with-addons.min',
+        'underscore': 'webapp/public/js/lib/underscore/underscore-min',
+        'jquery-ui': 'webapp/public/js/lib/jquery-ui/ui/minified/jquery-ui.min'
       },
 
       // Configuration for jsx plugin to work
