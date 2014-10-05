@@ -25,8 +25,10 @@ require.config({
     'backbone.queryparams': 'webapp/public/js/lib/backbone-query-parameters/backbone.queryparams',
 
     // react
-    'react': "webapp/public/js/lib/react/react-with-addons",
-    'jsx': "webapp/public/js/lib/jsx-requirejs-plugin/js/jsx",
+    'react': 'webapp/public/js/lib/react/react-with-addons',
+    'react-router': 'webapp/public/js/lib/react-router/dist/react-router',
+    'react-router-shim': 'webapp/public/js/helpers/router_shim',
+    'jsx': 'webapp/public/js/lib/jsx-requirejs-plugin/js/jsx',
     'JSXTransformer': 'webapp/public/js/lib/react/JSXTransformer',
     'react.backbone': 'webapp/public/js/lib/react.backbone/react.backbone',
 
@@ -44,6 +46,10 @@ require.config({
     'underscore': {
       exports: '_'
     },
+    'react-router-shim': {
+      exports: 'React'
+    },
+    'react-router': ['react-router-shim'],
     'jquery.payment': ['jquery'],
     'backbone.super': ['backbone'],
   }

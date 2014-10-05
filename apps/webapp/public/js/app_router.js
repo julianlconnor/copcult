@@ -1,22 +1,24 @@
+/** @jsx React.DOM */
+
 define([
-  'webapp/public/js/base_router',
-  'webapp/public/js/routes/home_route',
-  'fastclick'
-], function(BaseRouter, HomeRoute, FastClick) {
+  'react',
+  'react-router',
 
-  var AppRouter = BaseRouter.extend({
+  'jsx!webapp/public/js/app_wrapper',
+  'jsx!webapp/public/js/views/home'
+], function(React, ReactRouter, AppWrapper, HomeView) {
 
-    initialize: function() {
-      FastClick.attach(document.body);
-    },
+  var Route = ReactRouter.Route;
+  var Routes = ReactRouter.Routes;
+  var DefaultRoute = ReactRouter.DefaultRoute;
 
-    routes: {
-      '': HomeRoute,
-      '*notFound': 'render404'
-    }
+  var routes = (
+    <Routes location="history">
+      <Route name="app" path="/" handler={AppWrapper}>
+        <DefaultRoute handler={HomeView}/>
+      </Route>
+    </Routes>
+  );
 
-  });
-
-  return AppRouter;
-
+  React.renderComponent(routes, $('#content').get(0));
 });

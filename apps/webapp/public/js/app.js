@@ -1,21 +1,11 @@
 define([
   'jquery',
   'backbone',
-  'react',
+  'fastclick',
 
-  'webapp/public/js/app_router',
-], function($, Backbone, React, AppRouter) {
-
-  /*
-  * Starts our app.
-  */
+  'jsx!webapp/public/js/app_router'
+], function($, Backbone, FastClick) {
   $.ajaxSetup({ cache: false });
-
-  new AppRouter();
-
-  Backbone.history.start({
-    pushState: true,
-    root: '/'
-  });
+  FastClick.attach(document.body);
 });
 

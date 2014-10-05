@@ -101,6 +101,7 @@ define([
     },
 
     render: function() {
+
       if ( this.state.fetching ) {
         return <h3>Loading..</h3>;
       }
