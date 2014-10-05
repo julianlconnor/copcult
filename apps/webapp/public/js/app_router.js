@@ -4,7 +4,7 @@ define([
   'react',
   'react-router',
 
-  'jsx!webapp/public/js/app_wrapper',
+  'jsx!webapp/public/js/components/app_wrapper',
   'jsx!webapp/public/js/views/home'
 ], function(React, ReactRouter, AppWrapper, HomeView) {
 
