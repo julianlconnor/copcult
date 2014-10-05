@@ -1,4 +1,4 @@
 .DS_Store
 node_modules/
-apps/webapp/lib/
+apps/webapp/public/js/lib/
 build/
