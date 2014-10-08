@@ -7,13 +7,21 @@ define([
 
   'jsx!webapp/public/js/components/storefront/addItems',
 
+  'webapp/public/js/models/item',
+  'webapp/public/js/models/storefront',
+
   'webapp/public/js/helpers/ajax'
-], function(Promise, React, _, AddItems, ajax) {
+], function(Promise, React, _, AddItems, Item, Storefront, ajax) {
 
   var CreateStorefront = React.createClass({
 
     getInitialState: function() {
       return {
+        storefront: new Storefront({
+          instagramMediaID: this.props.item.id,
+          instagramMediaImageUrl: this.props.item.images.standard_resolution.url,
+          caption: this.props.item.caption ? this.props.item.caption.text : ''
+        }),
         storefrontUrls: []
       };
     },
@@ -29,13 +37,9 @@ define([
       event.preventDefault();
 
       var items = this.state.storefrontUrls.map(function(url) {
-        return ajax({
-          type: 'POST',
-          url: '/api/v1/items',
-          data: {
-            url: url
-          }
-        });
+        return new Item({
+          url: url
+        }).save();
       });
 
       return Promise.all(items).spread(function() {
@@ -43,20 +47,11 @@ define([
           return item.id;
         });
 
-        var caption = this.props.item.caption ? this.props.item.caption.text : '';
-        var data = {
-          instagramMediaID: this.props.item.id,
-          instagramMediaImageUrl: this.props.item.images.standard_resolution.url,
-          instagramMediaCaption: caption,
+        this.state.storefront.set({
           items: itemIDs
-        };
+        });
 
-        return ajax({
-          type: 'POST',
-          url: '/api/v1/storefronts',
-          data: data
-        }).then(this.redirectToStorefront,
-                this.handleError);
+        return this.state.storefront.save().then(this.redirectToStorefront, this.handleError);
       }.bind(this));
     },
 

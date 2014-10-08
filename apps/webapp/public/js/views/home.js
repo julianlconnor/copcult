@@ -8,8 +8,10 @@ define([
   'jsx!webapp/public/js/components/storefront/create',
   'jsx!webapp/public/js/components/storefront/modify',
 
-  'webapp/public/js/models/user'
-], function(Promise, React, _, CreateStorefront, ModifyStorefront, User) {
+  'webapp/public/js/models/user',
+  'webapp/public/js/models/storefront'
+], function(Promise, React, _, CreateStorefront,
+            ModifyStorefront, User, Storefront) {
 
   var user = new User(window.jaded.user);
 
@@ -21,7 +23,7 @@ define([
         fetching: false,
         creatingStorefront: false,
         modifyingStorefront: false,
-        storefront: null
+        storefront: new Storefront()
       };
     },
 
@@ -37,7 +39,7 @@ define([
       this.setState({
         creatingStorefront: false,
         modifyingStorefront: true,
-        storefront: storefront
+        storefront: new Storefront(storefront)
       });
     },
 
