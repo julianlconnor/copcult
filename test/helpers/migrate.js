@@ -1,6 +1,14 @@
 var path = require('path');
 var knex = require(path.join(process.cwd(), 'config/bookshelf'))().knex;
 
+// knex.raw('SET foreign_key_checks = 0;'),
+//
+//     knex.schema.dropTable('Address'),
+//
+//     knex.schema.dropTable('Member'),
+//
+//     knex.raw('SET foreign_key_checks = 1;')
+
 module.exports = {
 
   rollback: function(done) {
