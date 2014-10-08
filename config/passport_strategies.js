@@ -19,22 +19,24 @@ function instagramCallback(accessToken, refreshToken, profile, done) {
   var profileJSON = profile._json.data;
 
   return new User({
-    instagramId: profileJSON.id,
-    instagramBio: profileJSON.bio,
-    instagramUsername: profileJSON.username,
-    instagramProfileWebsite: profileJSON.website,
-    instagramProfilePicture: profileJSON.profile_picture,
-
-    instagramFollows: profileJSON.counts.follows,
-    instagramFollowers: profileJSON.counts.followed_by,
-    instagramNumPosts: profileJSON.counts.media,
-
-    /**
-    * TODO: need a way to handle refreshing a user's token.
-    */
-    instagramAccessToken: accessToken
+    instagramId: profileJSON.id
   })
   .findOrCreate()
+  .then(function(user) {
+    user.set({
+      instagramBio: profileJSON.bio,
+      instagramUsername: profileJSON.username,
+      instagramProfileWebsite: profileJSON.website,
+      instagramProfilePicture: profileJSON.profile_picture,
+
+      instagramFollows: profileJSON.counts.follows,
+      instagramFollowers: profileJSON.counts.followed_by,
+      instagramNumPosts: profileJSON.counts.media,
+      instagramAccessToken: accessToken
+    });
+
+    return user.save();
+  })
   .then(function(user) {
     done(null, user, accessToken);
   })
