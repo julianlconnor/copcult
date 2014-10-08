@@ -9,11 +9,7 @@ module.exports = {
     */
     var url = req.param('url');
 
-      /**
-      * TODO: make this insane.
-      */
     return materialistic(url).then(function(attrs) {
-      console.log(attrs);
       return new Item(attrs).save().then(function(item) {
         res.json(item.toJSON());
       });
