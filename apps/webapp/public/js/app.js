@@ -3,7 +3,9 @@ define([
   'backbone',
   'fastclick',
 
-  'jsx!webapp/public/js/app_router'
+  'jsx!webapp/public/js/app_router',
+
+  'react.backbone'
 ], function($, Backbone, FastClick) {
   /**
   * App Wide initialization.

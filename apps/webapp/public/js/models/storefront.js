@@ -6,6 +6,10 @@ define([
 
   var Storefront = BaseModel.extend({
 
+    defaults: {
+      items: []
+    },
+
     save: function() {
       return ajax({
         type: 'POST',
