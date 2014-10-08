@@ -8,10 +8,11 @@ define([
 
     render: function() {
       var item = this.props.item;
+
       return (
         <div className={'item-wrapper item-' + item.id} key={item.id}>
           <a href={item.url} target="_blank">
-            <img src={item.image} className="img-circle" style="width: 100px;" />
+            <img src={item.image} className="img-circle" />
             <div>
               <h3>{item.name}</h3>
             </div>

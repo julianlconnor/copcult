@@ -97,6 +97,23 @@ module.exports = {
       */
       res.send(200, 'wap');
     });
+  },
+
+  deleteItem: function(req, res) {
+    var itemId = req.param('itemId');
+    var storefrontId = req.param('storefrontId');
+
+    return new ItemStorefront({
+      itemId: itemId,
+      storefrontId: storefrontId
+    }).fetch().then(function(model) {
+      return model.destroy();
+    }).then(function() {
+      /**
+      * Return json.
+      */
+      res.json({});
+    });
   }
 
 };

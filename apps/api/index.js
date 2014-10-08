@@ -1,14 +1,37 @@
 var app = require('express')();
 
-app.post('/search', require('./handlers/search').post);
 
-app.get('/users', require('./handlers/users').getAll);
-app.post('/users', require('./handlers/users').post);
+/**
+* Search Handlers
+*/
+var search = require('./handlers/search');
 
-app.get('/storefronts', require('./handlers/storefronts').getAll);
-app.get('/storefronts/:storefrontId', require('./handlers/storefronts').getOne);
-app.post('/storefronts', require('./handlers/storefronts').post);
+app.post('/search', search.post);
 
-app.post('/items', require('./handlers/items').post);
+
+/**
+* User Handlers
+*/
+var users = require('./handlers/users');
+
+app.get('/users', users.getAll);
+app.post('/users', users.post);
+
+/**
+* Storefront Handlers
+*/
+var storefronts = require('./handlers/storefronts');
+
+app.get('/storefronts', storefronts.getAll);
+app.get('/storefronts/:storefrontId', storefronts.getOne);
+app.post('/storefronts', storefronts.post);
+app.delete('/storefronts/:storefrontId/items/:itemId', storefronts.deleteItem);
+
+/**
+* Item Handlers
+*/
+var items = require('./handlers/items');
+
+app.post('/items', items.post);
 
 module.exports = app;
