@@ -3,8 +3,10 @@
 define([
   'react',
 
+  'jsx!webapp/public/js/components/item',
+
   'webapp/public/js/models/item'
-], function(React, Item) {
+], function(React, ItemComponent, ItemModel) {
 
   var AddItems = React.createClass({
 
@@ -12,24 +14,24 @@ define([
       React.BackboneMixin('storefront')
     ],
 
-    addUrl: function(event) {
+    addItem: function(event) {
       event.preventDefault();
       var input = this.refs.search.getDOMNode();
 
-      return new Item({
+      return new ItemModel({
         url: input.value
       }).save().then(function(item) {
         this.props.storefront.set({
-          items: this.props.storefront.get('items').concat([item.id])
+          items: this.props.storefront.get('items').concat([item])
         });
         input.value = '';
       }.bind(this));
     },
 
     renderItems: function() {
-      return this.props.storefront.get('items').map(function(id) {
+      return this.props.storefront.get('items').map(function(item) {
         return (
-          <li>{id}</li>
+          <ItemComponent item={item} />
         );
       });
     },
@@ -40,7 +42,7 @@ define([
           <ul className="storefront-items">{this.renderItems()}</ul>
           <div className="input-wrapper">
             <input type="text" placeholder="add a url.." ref="search" />
-            <button onClick={this.addUrl}>Add url</button>
+            <button onClick={this.addItem}>Add url</button>
           </div>
         </div>
       );

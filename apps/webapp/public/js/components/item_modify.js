@@ -10,7 +10,7 @@ define([
 
     render: function() {
       return (
-        <div className="item-modify-wrapper">
+        <div className="col-md-6 text center item-modify-wrapper">
           <Item item={this.props.item} />
           <a onClick={this.props.handleDelete.bind(null, this.props.item)}>Delete</a>
         </div>

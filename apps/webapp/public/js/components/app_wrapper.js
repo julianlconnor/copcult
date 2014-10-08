@@ -7,7 +7,9 @@ define([
     render: function() {
       var activeRoute = this.props.activeRouteHandler;
       return (
-        < activeRoute />
+        <div className="container">
+          < activeRoute />
+        </div>
       );
     }
   });

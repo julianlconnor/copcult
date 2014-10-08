@@ -97,8 +97,8 @@ define([
           storefronts: storefronts,
           fetching: false
         });
-      }.bind(this)).catch(function() {
-        debugger;
+      }.bind(this)).catch(function(err) {
+        console.error(err);
       });
     },
 

@@ -28,20 +28,30 @@ define([
     },
 
     renderItems: function() {
-      return this.props.storefront.items.map(function(item) {
+      return this.props.storefront.get('items').map(function(item) {
         return <ItemModify item={item} handleDelete={this.deleteItem} />;
       }.bind(this));
     },
 
     render: function() {
       var storefront = this.props.storefront;
+      var style = {
+        'background-image': 'url(' + storefront.get('instagramMediaImageUrl') + ')',
+        'background-size': 'cover',
+        'height': '500px'
+      };
+
       return (
         <div>
           <h3>Modifying storefront</h3>
-          <img src={storefront.instagramMediaImageUrl} />
-          <ul>
-            {this.renderItems()}
-          </ul>
+          <div className="storefront-row row">
+            <div className="col-md-8" style={style}>
+              <div>{storefront.get('instagramMediaCaption')}</div>
+            </div>
+            <div className="col-md-4">
+              {this.renderItems()}
+            </div>
+          </div>
         </div>
       );
     }
