@@ -25,6 +25,10 @@ define([
       }).then(function(response) {
         return response.data;
       });
+    },
+
+    fetchFeed: function() {
+      var url = 'https://api.instagram.com/v1/users/self/feed?access_token=' + this.get('instagramAccessToken');
     }
 
   });

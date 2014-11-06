@@ -5,7 +5,7 @@ define([
   'react',
   'underscore',
 
-  'jsx!webapp/public/js/components/storefront/addItems',
+  'jsx!webapp/public/js/components/storefront/add_items',
 
   'webapp/public/js/models/storefront'
 ], function(Promise, React, _, AddItems, Storefront) {
@@ -36,7 +36,8 @@ define([
       /**
       * Item IDs should all be saved by <AddItems />
       */
-      return this.state.storefront.save().then(this.redirectToStorefront, this.handleError);
+      return this.state.storefront.save().then(this.redirectToStorefront,
+                                               this.handleError);
     },
 
     render: function() {

@@ -71,6 +71,7 @@ define([
 
           return flag;
         }
+
         instagramPosts = _.filter(instagramPosts, isAStorefront);
 
         /**
@@ -83,6 +84,7 @@ define([
             </li>
           );
         }.bind(this));
+
         storefronts = storefronts.map(function(storefront) {
           return (
             <li onClick={this.modifyStorefrontFlow.bind(null, storefront)}>

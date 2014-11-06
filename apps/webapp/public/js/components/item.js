@@ -10,7 +10,7 @@ define([
       var item = this.props.item;
 
       if ( item.toJSON ) {
-        item = this.props.item.toJSON();
+        item = item.toJSON();
       }
 
       return (
