@@ -34,4 +34,19 @@ var items = require('./handlers/items');
 
 app.post('/items', items.post);
 
+/**
+* Realtime Tag Handlers
+*/
+var realtime = require('./handlers/realtime');
+
+app.get('/realtime', realtime.get);
+app.post('/realtime', realtime.post);
+app.get('/realtime/subscriptions', realtime.listSubscriptions);
+
+/**
+* Media Handlers
+*/
+var media = require('./handlers/media');
+app.get('/media', media.get);
+
 module.exports = app;
