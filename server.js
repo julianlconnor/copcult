@@ -87,7 +87,7 @@ app.configure(function(){
 });
 
 http.createServer(app).listen(app.get('port'), function(){
-  instagramUserScraper.start();
+  // instagramUserScraper.start();
 
   console.log('jaded ~~ ' + app.get('port'));
 });
