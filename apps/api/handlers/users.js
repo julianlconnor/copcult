@@ -37,7 +37,9 @@ module.exports.feed = function(req, res) {
   var userId = req.param('userId');
 
   return new User({ id: userId }).fetch({ withRelated: 'images' }).then(function(user) {
-    res.json(user.related('images').toJSON());
+    res.json({
+      data: user.related('images').toJSON()
+    });
   }).catch(function() {
     console.error('There was an error fetching the user with the id of ', userId, '\'s feed.');
     res.send(500, 'There was an error fetching the user with the id of ', userId, '\'s feed.');

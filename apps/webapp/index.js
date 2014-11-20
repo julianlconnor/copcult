@@ -58,9 +58,8 @@ app.get('/:username', function(req, res) {
     instagramUsername: escape(req.param('username'))
   })
   .fetch({ 
-    withRelated: ['storefronts', 'storefronts.items', 'storefronts.items.brand']
+    withRelated: ['images']
   }).then(function(user) {
-    console.log(user.toJSON());
     res.render('userProfile', user.toJSON());
   }).catch(function() {
     res.send(500, 'Storefront not found.');
