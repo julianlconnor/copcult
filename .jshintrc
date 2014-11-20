@@ -19,6 +19,7 @@
 
   "browser": true,
   "devel": true,
+  "-W079": true,
 
   "globals": {
     "before": false,
