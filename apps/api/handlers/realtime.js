@@ -2,7 +2,7 @@ var Promise = require('bluebird');
 var request = Promise.promisify(require('request'));
 
 var settings = require('../../../config/settings')();
-var Media = require('../models/media');
+var Image = require('../models/image');
 
 module.exports = {
 
@@ -25,7 +25,7 @@ module.exports = {
     */
     req.body.forEach(function(update) {
       if ( update.object_id === 'blessed' ) {
-        Media.findRecentByTag();
+        Image.findRecentByTag();
       }
     });
 

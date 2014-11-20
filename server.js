@@ -15,7 +15,6 @@ var RedisStore = require('connect-redis')(express);
 var exphbs = require('express3-handlebars');
 
 var settings = require('./config/settings')();
-var instagramUserScraper = require('./bin/instagram_user_scraper');
 
 
 /**
@@ -87,7 +86,5 @@ app.configure(function(){
 });
 
 http.createServer(app).listen(app.get('port'), function(){
-  // instagramUserScraper.start();
-
   console.log('jaded ~~ ' + app.get('port'));
 });

@@ -17,6 +17,8 @@ var users = require('./handlers/users');
 app.get('/users', users.getAll);
 app.post('/users', users.post);
 
+app.get('/users/:user_id/feed', users.feed);
+
 /**
 * Storefront Handlers
 */
@@ -46,7 +48,7 @@ app.get('/realtime/subscriptions', realtime.listSubscriptions);
 /**
 * Media Handlers
 */
-var media = require('./handlers/media');
-app.get('/media', media.get);
+var media = require('./handlers/images');
+app.get('/images', media.get);
 
 module.exports = app;

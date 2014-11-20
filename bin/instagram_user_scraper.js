@@ -1,8 +1,11 @@
+#!/usr/bin/env node
+
 var _ = require('lodash');
 var Promise = require('bluebird');
+var Bookshelf = require('bookshelf');
 
-var Media = require('../apps/api/models/media');
-var MediaUser = require('../apps/api/models/media_user');
+var Image = require('../apps/api/models/image');
+var ImageUser = require('../apps/api/models/image_user');
 var User = require('../apps/api/models/user');
 
 var constants = require('../config/constants');
@@ -28,22 +31,24 @@ function addMedia(user, images) {
       caption = image.caption.text;
     }
 
-    return new Media({
-      type: constants.TYPE_INSTAGRAM,
-      foreignId: image.id,
-      link: image.link,
-      caption: caption,
-      thumbnail: image.images.thumbnail.url,
-      lowResolution: image.images.low_resolution.url,
-      standardResolution: image.images.standard_resolution.url
-    }).findOrCreate().then(function(media) {
-      /**
-      * Create association between a user and a piece of media.
-      */
-      return new MediaUser({
-        user_id: user.get('id'),
-        media_id: media.get('id')
-      }).findOrCreate();
+    return Bookshelf.transaction(function(t) {
+      return new Image({
+        type: constants.TYPE_INSTAGRAM,
+        foreignId: image.id,
+        link: image.link,
+        caption: caption,
+        thumbnail: image.images.thumbnail.url,
+        lowResolution: image.images.low_resolution.url,
+        standardResolution: image.images.standard_resolution.url
+      }).findOrCreate({ transacting: t }).then(function(image) {
+        /**
+        * Create association between a user and a piece of image.
+        */
+        return new ImageUser({
+          user_id: user.get('id'),
+          image_id: image.get('id')
+        }).findOrCreate({ transacting: t });
+      });
     });
   }));
 }
@@ -107,9 +112,9 @@ return User.fetchAll().then(function(col) {
 })
 .then(function() {
   console.log('Successfully updated feeds.');
+  process.exit(0);
 })
 .catch(function(err) {
   console.error('There was an error parsing user feeds.');
   throw err;
 });
-// };

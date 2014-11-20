@@ -2,15 +2,15 @@ var Promise = require('bluebird');
 var request = Promise.promisify(require('request'));
 
 var BaseModel = require('./base');
-var Storefront = require('./storefront');
+var Image = require('./image');
 
 var User = BaseModel.extend({
 
   tableName: 'users',
   hasTimestamps: ['created_at', 'updated_at'],
 
-  storefronts: function() {
-    return this.hasMany(Storefront);
+  images: function() {
+    return this.belongsToMany(Image);
   },
 
   fetchFeatured: function() {
@@ -23,13 +23,12 @@ var User = BaseModel.extend({
   fetchFeed: function() {
     var url = 'https://api.instagram.com/v1/users/self/feed?access_token=' + this.get('instagramAccessToken');
 
-    return Promise.resolve(require('../../../feed.json').data);
-    // return request(url).then(function(resp) {
-    //   var response = resp[0];
-    //   var feed = JSON.parse(response.body).data;
-    //
-    //   return feed;
-    // });
+    return request(url).then(function(resp) {
+      var response = resp[0];
+      var feed = JSON.parse(response.body).data;
+
+      return feed;
+    });
   }
 
 });
