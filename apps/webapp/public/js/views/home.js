@@ -5,42 +5,19 @@ define([
   'react',
   'underscore',
 
-  'jsx!webapp/public/js/components/feed/feed',
+  'jsx!webapp/public/js/components/submit_image',
 
   'webapp/public/js/models/user'
-], function(Promise, React, _, Feed, User) {
+], function(Promise, React, _, SubmitImage, User) {
 
   var user = new User(window.jaded.user);
 
   var HomeView = React.createClass({
 
-    getInitialState: function() {
-      return {
-        feed: [],
-        fetching: false
-      };
-    },
-
-    componentWillMount: function() {
-      this.setState({
-        fetching: true
-      });
-
-      user.fetchFeed().then(function(feed) {
-        this.setState({
-          feed: feed,
-          fetching: false
-        });
-      }.bind(this));
-    },
-
     render: function() {
-
-      if ( this.state.fetching ) {
-        return <h3>Loading..</h3>;
-      }
-
-      return <Feed feed={this.state.feed} />;
+      return (
+        <SubmitImage />
+      );
     }
   });
 

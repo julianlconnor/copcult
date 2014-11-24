@@ -2,7 +2,7 @@ var BaseModel = require('./base');
 
 var ImageUser = BaseModel.extend({
 
-  tableName: 'image_users'
+  tableName: 'images_users'
 
 });
 
