@@ -5,10 +5,10 @@ define([
 ], function(React) {
   var AppWrapper = React.createClass({
     render: function() {
-      var activeRoute = this.props.activeRouteHandler;
+      var ActiveRoute = this.props.activeRouteHandler;
       return (
         <div className="container">
-          < activeRoute />
+          <ActiveRoute />
         </div>
       );
     }

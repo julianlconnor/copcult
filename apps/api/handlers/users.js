@@ -33,7 +33,7 @@ module.exports.getAll = function(req, res) {
   });
 };
 
-module.exports.feed = function(req, res) {
+module.exports.images = function(req, res) {
   var userId = req.param('userId');
 
   return new User({ id: userId }).fetch({ withRelated: 'images' }).then(function(user) {

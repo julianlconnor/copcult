@@ -20,5 +20,5 @@ define([
     </Routes>
   );
 
-  React.renderComponent(routes, $('#content').get(0));
+  React.render(routes, $('#content').get(0));
 });

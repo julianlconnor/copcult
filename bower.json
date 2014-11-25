@@ -15,13 +15,13 @@
     "Ladda": "~0.9.0",
     "backbone-query-parameters": "~0.2.4",
     "fastclick": "~0.6.10",
-    "react": "https://github.com/venmo/react-build.git#65779dc273803380a8fea4c97b7002e2c994b72e",
     "jquery.cookie": "~1.4.0",
     "jsx-requirejs-plugin": "https://github.com/philix/jsx-requirejs-plugin.git#1bf51096aa3d5034fa7418d4b9b23ad0dbc6a783",
     "requirejs-text": "2.0.10",
     "react.backbone": "~0.5.0",
     "bluebird": "~2.3.4",
     "underscore": "~1.7.0",
-    "react-router": "~0.8.0"
+    "react-router": "~0.8.0",
+    "react": "~0.12.1"
   }
 }

@@ -5,10 +5,11 @@ define([
   'react',
   'underscore',
 
+  'jsx!webapp/public/js/components/images',
   'jsx!webapp/public/js/components/submit_image',
 
   'webapp/public/js/models/user'
-], function(Promise, React, _, SubmitImage, User) {
+], function(Promise, React, _, Images, SubmitImage, User) {
 
   var user = new User(window.jaded.user);
 
@@ -16,7 +17,12 @@ define([
 
     render: function() {
       return (
-        <SubmitImage />
+        <div>
+          <h1>Submitted Images</h1>
+          <Images />
+          <h1>Submit an Image</h1>
+          <SubmitImage />
+        </div>
       );
     }
   });
