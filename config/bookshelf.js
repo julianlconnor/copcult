@@ -30,6 +30,7 @@ module.exports = function() {
       connection: connection
     });
     bookshelf = require('bookshelf')(knex);
+    bookshelf.plugin('registry');
   }
 
   return {

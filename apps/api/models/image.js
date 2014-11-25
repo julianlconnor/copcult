@@ -5,7 +5,6 @@ var settings = require('../../../config/settings')();
 var constants = require('../../../config/constants');
 
 var BaseModel = require('./base');
-var User = require('./user');
 
 var Image = BaseModel.extend({
 
@@ -13,7 +12,11 @@ var Image = BaseModel.extend({
   hasTimestamps: ['created_at', 'updated_at'],
 
   users: function() {
-    return this.belongsToMany(User);
+    /**
+    * TODO: refactor this to use a factory.
+    * https://github.com/tgriesser/bookshelf/wiki/Plugin:-Model-Registry
+    */
+    return this.belongsToMany(require('./user'));
   },
 
   fetchViaShortCode: function() {

@@ -1,4 +1,5 @@
 var User = require('../api/models/user');
+var Image = require('../api/models/image');
 var settings = require('../../config/settings')();
 
 var _ = require('underscore');
@@ -47,6 +48,21 @@ app.get('/', function(req, res) {
   }
 
   return renderLoggedIn(req, res);
+});
+
+app.get('/images/:id', function(req, res) {
+  var imageId = req.param('id');
+
+  new Image({
+    id: escape(imageId)
+  }).fetch({
+    withRelated: ['users']
+  }).then(function(image) {
+    res.render('showImage', image.toJSON());
+  }).catch(function(err) {
+    console.error(err);
+    res.send(500, 'Unable to find image.');
+  });
 });
 
 app.get('/:username', function(req, res) {

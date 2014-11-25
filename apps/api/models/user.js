@@ -2,7 +2,6 @@ var Promise = require('bluebird');
 var request = Promise.promisify(require('request'));
 
 var BaseModel = require('./base');
-var Image = require('./image');
 
 var User = BaseModel.extend({
 
@@ -10,7 +9,11 @@ var User = BaseModel.extend({
   hasTimestamps: ['created_at', 'updated_at'],
 
   images: function() {
-    return this.belongsToMany(Image);
+    /**
+    * TODO: refactor this to use a factory.
+    * https://github.com/tgriesser/bookshelf/wiki/Plugin:-Model-Registry
+    */
+    return this.belongsToMany(require('./image'));
   },
 
   fetchFeatured: function() {
