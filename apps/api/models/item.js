@@ -2,6 +2,7 @@ var Checkit = require('checkit');
 
 var BaseModel = require('./base');
 var Brand = require('./brand');
+var Brand = require('./item');
 
 var rules = new Checkit({
   url: ['required', 'url']
@@ -23,6 +24,10 @@ var Item = BaseModel.extend({
   brand: function() {
     return this.belongsTo(Brand);
   },
+
+  images: function() {
+    return this.belongsToMany(Item);
+  }
 
 });
 

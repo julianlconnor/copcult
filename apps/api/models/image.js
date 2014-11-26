@@ -19,6 +19,14 @@ var Image = BaseModel.extend({
     return this.belongsToMany(require('./user'));
   },
 
+  items: function() {
+    /**
+    * TODO: refactor this to use a factory.
+    * https://github.com/tgriesser/bookshelf/wiki/Plugin:-Model-Registry
+    */
+    return this.belongsToMany(require('./item'));
+  },
+
   fetchViaShortCode: function() {
     var clientID = settings.oauth.instagram.clientID;
     var url = 'https://api.instagram.com/v1/media/shortcode/' + this.get('shortUrl') + '?client_id=' + clientID;

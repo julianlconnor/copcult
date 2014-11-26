@@ -1,32 +1,27 @@
 /** @jsx React.DOM */
 
-define([
-  'bluebird',
-  'react',
-  'underscore',
+var React = require('react');
 
-  'jsx!webapp/public/js/components/images',
-  'jsx!webapp/public/js/components/submit_image',
+var Images = require('../components/images');
+var SubmitImage = require('../components/submit_image');
 
-  'webapp/public/js/models/user'
-], function(Promise, React, _, Images, SubmitImage, User) {
+var User = require('../models/user');
 
-  var user = new User(window.jaded.user);
+var user = new User(window.jaded.user);
 
-  var HomeView = React.createClass({
+var HomeView = React.createClass({
 
-    render: function() {
-      return (
-        <div>
-          <h1>Submitted Images</h1>
-          <Images />
-          <h1>Submit an Image</h1>
-          <SubmitImage />
-        </div>
-      );
-    }
-  });
-
-  return HomeView;
-
+  render: function() {
+    console.log('wap');
+    return (
+      <div>
+        <h1>Submitted Images</h1>
+        <Images />
+        <h1>Submit an Image</h1>
+        <SubmitImage />
+      </div>
+    );
+  }
 });
+
+module.exports = HomeView;

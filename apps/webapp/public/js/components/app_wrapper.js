@@ -1,19 +1,17 @@
 /** @jsx React.DOM */
 
-define([
-  'react'
-], function(React) {
-  var AppWrapper = React.createClass({
-    render: function() {
-      var ActiveRoute = this.props.activeRouteHandler;
-      return (
-        <div className="container">
-          <ActiveRoute />
-        </div>
-      );
-    }
-  });
+var React = require('react');
+var RouteHandler = require('react-router').RouteHandler;
 
-  return AppWrapper;
+var AppWrapper = React.createClass({
+  render: function() {
+    console.log('AppWrapper');
+    return (
+      <div className="container">
+        <RouteHandler />
+      </div>
+    );
+  }
 });
 
+module.exports = AppWrapper;

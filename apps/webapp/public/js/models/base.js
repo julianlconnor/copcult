@@ -1,14 +1,11 @@
-define([
-  'backbone'
-], function(Backbone) {
+var Backbone = require('backbone');
 
-  var BaseModel = Backbone.Model.extend({
+var BaseModel = Backbone.Model.extend({
 
-    apiRoot: function() {
-      return '/api/v1';
-    }
+  apiRoot: function() {
+    return '/api/v1';
+  }
 
-  });
-
-  return BaseModel;
 });
+
+module.exports = BaseModel;

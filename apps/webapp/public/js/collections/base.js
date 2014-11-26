@@ -1,15 +1,12 @@
-define([
-  'backbone'
-], function(Backbone) {
+var Backbone = require('backbone');
 
-  var BaseCollection = Backbone.Collection.extend({
+var BaseCollection = Backbone.Collection.extend({
 
-    apiRoot: function() {
-      return '/api/v1';
-    }
+  apiRoot: function() {
+    return '/api/v1';
+  }
 
-  });
-
-  return BaseCollection;
 });
+
+module.exports = BaseCollection;
 

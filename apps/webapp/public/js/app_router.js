@@ -1,24 +1,22 @@
 /** @jsx React.DOM */
 
-define([
-  'react',
-  'react-router',
+var $ = require('jquery');
+var React = require('react');
+var ReactRouter = require('react-router');
 
-  'jsx!webapp/public/js/components/app_wrapper',
-  'jsx!webapp/public/js/views/home'
-], function(React, ReactRouter, AppWrapper, HomeView) {
+var AppWrapper = require('./components/app_wrapper');
+var HomeView = require('./views/home');
 
-  var Route = ReactRouter.Route;
-  var Routes = ReactRouter.Routes;
-  var DefaultRoute = ReactRouter.DefaultRoute;
+var Route = ReactRouter.Route;
+var DefaultRoute = ReactRouter.DefaultRoute;
 
-  var routes = (
-    <Routes location="history">
-      <Route name="app" path="/" handler={AppWrapper}>
-        <DefaultRoute handler={HomeView}/>
-      </Route>
-    </Routes>
-  );
+var routes = (
+  <Route handler={AppWrapper} path="/">
+    <DefaultRoute handler={HomeView} />
+  </Route>
+);
 
-  React.render(routes, $('#content').get(0));
+ReactRouter.run(routes, ReactRouter.HistoryLocation, function (Handler) {
+  console.log($('#content').get(0));
+  React.render(<Handler/>, $('#content').get(0));
 });

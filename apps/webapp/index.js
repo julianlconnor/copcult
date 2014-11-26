@@ -8,6 +8,8 @@ var exphbs = require('express3-handlebars');
 var express = require('express');
 var app = express();
 
+var browserify = require('browserify-middleware');
+
 var defaultLocal = {
   SERVE_COMPILED: !settings.onDev()
 };
@@ -36,6 +38,9 @@ app.engine('handlebars', exphbs({
   partialsDir: path.join(__dirname, 'views', 'partials')
 }));
 
+app.use('/webapp/public/js/app.js', browserify('./apps/webapp/public/js/app.js', {
+  transform: ['reactify']
+}));
 app.use('/webapp/', express.static(__dirname));
 app.get('/', function(req, res) {
 

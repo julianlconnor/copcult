@@ -1,22 +1,17 @@
-define([
-  'underscore',
-  'webapp/public/js/models/base',
-  'webapp/public/js/helpers/ajax'
-], function(_, BaseModel, ajax) {
+var BaseModel = require('./base');
+var ajax = require('../helpers/ajax');
+  
+var User = BaseModel.extend({
 
-  var User = BaseModel.extend({
-
-    fetchFeed: function() {
-      return ajax({
-        type: 'GET',
-        url: this.apiRoot() + '/users/' + this.id + '/feed'
-      }).then(function(response) {
-        return response.data;
-      });
-    }
-
-  });
-
-  return User;
+  fetchFeed: function() {
+    return ajax({
+      type: 'GET',
+      url: this.apiRoot() + '/users/' + this.id + '/feed'
+    }).then(function(response) {
+      return response.data;
+    });
+  }
 
 });
+
+module.exports = User;
