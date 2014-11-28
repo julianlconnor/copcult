@@ -1,3 +1,4 @@
+{{> header }}
 
 <div class="container">
 
@@ -13,3 +14,20 @@
     {{> profile/image }}
   {{/ each }}
 </div>
+
+
+<script>
+  if ( !window.jaded ) {
+    window.jaded = {};
+    window.jaded.user = {};
+  }
+
+  window.jaded.user = JSON.parse('{{{ user }}}');
+</script>
+
+{{# if SERVE_COMPILED }}
+  <script src="/js/jaded.min.js"></script>
+{{ else }}
+  <script src="/webapp/public/js/app.js"></script>
+{{/ if }}
+

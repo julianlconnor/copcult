@@ -1,20 +1,4 @@
-<h1>Logged In</h1>
-<span>{{ user.instagramUsername }}</span>
-<a href="/logout">Logout</a>
+{{> header }}
+
 <div id="content"></div>
-
-
-<script>
-  if ( !window.jaded ) {
-    window.jaded = {};
-    window.jaded.user = {};
-  }
-
-  window.jaded.user = JSON.parse('{{{ user }}}');
-</script>
-
-{{# if SERVE_COMPILED }}
-  <script src="/js/jaded.min.js"></script>
-{{ else }}
-  <script src="/webapp/public/js/app.js"></script>
-{{/ if }}
+{{> footer }}

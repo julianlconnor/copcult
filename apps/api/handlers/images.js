@@ -16,6 +16,21 @@ module.exports = {
     });
   },
 
+  getOne: function(req, res) {
+    var imageId = req.param('imageId');
+
+    new Image({
+      id: escape(imageId)
+    }).fetch({
+      withRelated: ['users', 'items']
+    }).then(function(image) {
+      return res.json({ data: image.toJSON() });
+    }).catch(function(err) {
+      console.error(err);
+      res.send(500, 'Unable to find image.');
+    });
+  },
+
   post: function(req, res) {
     /**
     * Takes an instagram url, parses out id, fetches for more info, saves

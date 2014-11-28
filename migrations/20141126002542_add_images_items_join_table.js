@@ -3,7 +3,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('images_items', function(table) {
     table.integer('image_id').index().references('images.id');
-    table.integer('user_id').index().references('users.id');
+    table.integer('item_id').index().references('items.id');
   });
 };
 

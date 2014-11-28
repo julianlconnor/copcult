@@ -2,7 +2,7 @@ var Checkit = require('checkit');
 
 var BaseModel = require('./base');
 var Brand = require('./brand');
-var Brand = require('./item');
+var Item = require('./item');
 
 var rules = new Checkit({
   url: ['required', 'url']

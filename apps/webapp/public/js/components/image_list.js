@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var Image = require('./image');
+var ImageListItem = require('./image_list_item');
 
 var ajax = require('../helpers/ajax');
 
@@ -27,7 +27,7 @@ var Images = React.createClass({
 
   render: function() {
     var images = this.state.images.map(function(image) {
-      return <Image data={image} key={image.id} />;
+      return <ImageListItem data={image} key={image.id} />;
     });
 
     return (

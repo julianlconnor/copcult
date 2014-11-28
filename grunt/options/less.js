@@ -1,6 +1,6 @@
 var lessPath = [
-  './apps/shared/lib',
-  './apps/shared/stylesheets'
+  './apps/webapp/public/js/lib',
+  './apps/webapp/public/stylesheets'
 ];
 
 module.exports = {

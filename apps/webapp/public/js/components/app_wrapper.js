@@ -1,14 +1,17 @@
 /** @jsx React.DOM */
 
+var _ = require('lodash');
 var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
 
+var User = require('../models/user');
+var user = new User(window.jaded.user);
+
 var AppWrapper = React.createClass({
   render: function() {
-    console.log('AppWrapper');
     return (
       <div className="container">
-        <RouteHandler />
+        <RouteHandler {..._.extend(this.props, { user: user })} />
       </div>
     );
   }

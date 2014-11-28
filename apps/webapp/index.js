@@ -14,6 +14,12 @@ var defaultLocal = {
   SERVE_COMPILED: !settings.onDev()
 };
 
+function renderTemplate(req, res, templateName, data) {
+  return res.render(templateName, _.extend(data, { 
+    user: JSON.stringify(req.user.omit('password'))
+  }));
+}
+
 function renderLoggedOut(req, res) {
   /**
   * Fetch featured curators.
@@ -61,9 +67,9 @@ app.get('/images/:id', function(req, res) {
   new Image({
     id: escape(imageId)
   }).fetch({
-    withRelated: ['users']
+    withRelated: ['users', 'items']
   }).then(function(image) {
-    res.render('showImage', image.toJSON());
+    return renderTemplate(req, res, 'showImage', image.toJSON());
   }).catch(function(err) {
     console.error(err);
     res.send(500, 'Unable to find image.');

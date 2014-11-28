@@ -50,6 +50,7 @@ app.get('/realtime/subscriptions', realtime.listSubscriptions);
 */
 var media = require('./handlers/images');
 app.get('/images', media.get);
+app.get('/images/:imageId', media.getOne);
 app.post('/images', media.post);
 
 module.exports = app;
