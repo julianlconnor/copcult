@@ -1,5 +1,6 @@
 var url = require('url');
-var Bookshelf = require('bookshelf');
+var Promise = require('bluebird');
+var materialistic = require('materialistic');
 
 var Image = require('../models/image');
 var ImageUser = require('../models/image_user');
@@ -31,6 +32,25 @@ module.exports = {
     });
   },
 
+  addItem: function(req, res) {
+    var url = req.param('url');
+    var imageId = req.param('imageId');
+
+    return Promise.all([
+      new Image({ id: imageId }).fetch(),
+      materialistic(url).finally(function() {
+        return Promise.resolve({ url: url });
+      })
+    ]).spread(function(image, itemAttrs) {
+      return image.related('items').create(itemAttrs).yield(image);
+    }).then(function(image) {
+      res.json({ data: image.toJSON() });
+    }).catch(function(err) {
+      console.error('There was an error adding the item to the image.', err);
+      res.send(500);
+    });
+  },
+
   post: function(req, res) {
     /**
     * Takes an instagram url, parses out id, fetches for more info, saves
@@ -46,6 +66,7 @@ module.exports = {
 
     /**
     * TODO: refactor this asap lol
+    * TODO: this will break if there's no trailing slash.
     */
     shortUrl = url.parse(shortUrl).path.match(/\/p\/(.*)\//)[1];
 

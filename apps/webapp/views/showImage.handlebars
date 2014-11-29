@@ -9,16 +9,20 @@
         <p>{{ caption }}</p>
       </div>
       <div class="col-md-3">
-        <h2>Gear</h2>
-        {{# if images }}
-          <ul class="items">
-            {{# each images }}
-              {{> profile/image }}
-            {{/ each }}
-          </ul>
-        {{ else }}
-          <h3>No one has recognized this style yet, will you be the first?</h3>
-        {{/ if }}
+        <div class="image-items">
+          <h2>Gear</h2>
+          {{# if images }}
+            <ul class="items">
+              {{# each images }}
+                {{> profile/image }}
+              {{/ each }}
+            </ul>
+          {{ else }}
+            <h3>No one has recognized this style yet, will you be the first?</h3>
+          {{/ if }}
+        </div>
+        <div class="add-item">
+        </div>
       </div>
     </div>
   </div>

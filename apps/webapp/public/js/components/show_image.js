@@ -1,8 +1,10 @@
 /** @jsx React.DOM */
+var _ = require('lodash');
 var React = require('react');
 var ajax = require('../helpers/ajax');
 
 var ImageItems = require('./image_items');
+var AddItem = require('./add_item');
 
 var ShowImages = React.createClass({
 
@@ -15,9 +17,21 @@ var ShowImages = React.createClass({
   },
 
   componentWillMount: function() {
-    ajax({
+    return ajax({
       url: '/api/v1/images/' + this.props.id,
       type: 'GET'
+    }).then(function(response) {
+      this.setState({
+        image: response.data
+      });
+    }.bind(this));
+  },
+
+  addItem: function(data) {
+    ajax({
+      type: 'POST',
+      url: '/api/v1/images/' + this.props.id + '/items',
+      data: data,
     }).then(function(response) {
       this.setState({
         image: response.data
@@ -32,7 +46,10 @@ var ShowImages = React.createClass({
           <img src={ this.state.image.standardResolution } />
           <p>{ this.state.image.caption }</p>
         </div>
-        <ImageItems items={this.state.image.items} />
+        <div className="col-md-3">
+          <ImageItems items={this.state.image.items} />
+          <AddItem handleSubmit={this.addItem} />
+        </div>
       </div>
     );
   }

@@ -15,9 +15,9 @@ var ImageItems = React.createClass({
       });
       
       outlet = (
-        <ul className="items">
+        <div className="items">
           {items}
-        </ul>
+        </div>
       );
     } else {
       outlet = (
@@ -26,7 +26,7 @@ var ImageItems = React.createClass({
     }
 
     return (
-      <div className="col-md-3">
+      <div className="image-items">
         <h2>Gear</h2>
         {outlet}
       </div>

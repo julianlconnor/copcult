@@ -5,6 +5,7 @@ var React = require('react');
 var Image = React.createClass({
 
   render: function() {
+    console.log(this.props.data);
     return (
       <li>
         <a href={'/images/' + this.props.data.id}>

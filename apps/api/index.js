@@ -46,11 +46,12 @@ app.post('/realtime', realtime.post);
 app.get('/realtime/subscriptions', realtime.listSubscriptions);
 
 /**
-* Media Handlers
+* Images Handlers
 */
-var media = require('./handlers/images');
-app.get('/images', media.get);
-app.get('/images/:imageId', media.getOne);
-app.post('/images', media.post);
+var images = require('./handlers/images');
+app.get('/images', images.get);
+app.get('/images/:imageId', images.getOne);
+app.post('/images', images.post);
+app.post('/images/:imageId/items', images.addItem);
 
 module.exports = app;

@@ -16,7 +16,8 @@ var defaultLocal = {
 
 function renderTemplate(req, res, templateName, data) {
   return res.render(templateName, _.extend(data, { 
-    user: JSON.stringify(req.user.omit('password'))
+    user: req.user.omit('password'),
+    rawUser: JSON.stringify(req.user.omit('password'))
   }));
 }
 
@@ -64,7 +65,7 @@ app.get('/', function(req, res) {
 app.get('/images/:id', function(req, res) {
   var imageId = req.param('id');
 
-  new Image({
+  return new Image({
     id: escape(imageId)
   }).fetch({
     withRelated: ['users', 'items']
