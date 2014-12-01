@@ -12,7 +12,8 @@ var ShowImages = React.createClass({
   getInitialState: function() {
     return {
       image: {
-        items: []
+        items: [],
+        comments: []
       }
     };
   },
@@ -43,9 +44,9 @@ var ShowImages = React.createClass({
   render: function() {
     return (
       <div className="show-image">
-        <div className="col-md-6 col-md-offset-1 text-center">
-          <img src={ this.state.image.standardResolution } />
-          <p>{ this.state.image.caption }</p>
+        <div className="col-md-6 col-md-offset-1">
+          <img className="instagram-image" src={this.state.image.standardResolution} />
+          <p>{this.state.image.caption}</p>
           <ImageComments imageId={this.props.id} comments={this.state.image.comments} />
         </div>
         <div className="col-md-5">

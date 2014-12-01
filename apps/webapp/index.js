@@ -52,7 +52,7 @@ app.get('/images/:id', function(req, res) {
   return new Image({
     id: escape(imageId)
   }).fetch({
-    withRelated: ['users', 'items']
+    withRelated: ['users', 'items', 'comments']
   }).then(function(image) {
     return renderTemplate(req, res, 'showImage', image.toJSON());
   }).catch(function(err) {

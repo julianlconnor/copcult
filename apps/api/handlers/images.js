@@ -23,7 +23,7 @@ module.exports = {
     new Image({
       id: escape(imageId)
     }).fetch({
-      withRelated: ['users', 'items']
+      withRelated: ['users', 'items', 'comments']
     }).then(function(image) {
       return res.json({ data: image.toJSON() });
     }).catch(function(err) {
@@ -110,7 +110,7 @@ module.exports = {
     return new Image({
       id: imageId
     }).fetch({
-      withRelated: ['comments']
+      withRelated: ['comments', 'comments.user']
     }).then(function(image) {
       res.json({
         data: image.related('comments')
@@ -122,22 +122,26 @@ module.exports = {
   },
 
   addComment: function(req, res) {
-    var text = req.param('commentText');
+    var text = req.param('text');
     var userId = req.param('userId');
     var imageId = req.param('imageId');
 
     return new Image({
       id: imageId
     }).fetch({
-      withRelated: ['comments']
+      withRelated: ['comments', 'comments.user']
     }).then(function(image) {
       return image.related('comments').create({
         text: text,
         imageId: imageId,
         userId: userId
-      }).yield(image).then(function(image) {
-        res.json({
-          data: image.toJSON()
+      }).then(function() {
+        return image.fetch({
+          withRelated: ['comments', 'comments.user']
+        }).then(function(image) {
+          return res.json({
+            data: image.related('comments').toJSON()
+          });
         });
       });
     }).catch(function(err) {

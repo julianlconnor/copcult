@@ -1,27 +1,29 @@
 {{> header }}
 
-<div id="content" class="container">
+<div id="content">
+  <div class="container">
 
-  <div class="row">
-    <div class="show-image">
-      <div class="col-md-6 col-md-offset-1 text-center">
-        <img src="{{ standardResolution }}" />
-        <p>{{ caption }}</p>
-      </div>
-      <div class="col-md-5">
-        <div class="image-items">
-          <h2>Gear</h2>
-          {{# if images }}
-            <ul class="items">
-              {{# each images }}
-                {{> profile/image }}
-              {{/ each }}
-            </ul>
-          {{ else }}
-            <h3>No one has recognized this style yet, will you be the first?</h3>
-          {{/ if }}
+    <div class="row">
+      <div class="show-image">
+        <div class="col-md-6 col-md-offset-1">
+          <img src="{{ standardResolution }}" />
+          <p>{{ caption }}</p>
         </div>
-        <div class="add-item">
+        <div class="col-md-5">
+          <div class="image-items">
+            <h2>Gear</h2>
+            {{# if images }}
+              <ul class="items">
+                {{# each images }}
+                  {{> profile/image }}
+                {{/ each }}
+              </ul>
+            {{ else }}
+              <h3>No one has recognized this style yet, will you be the first?</h3>
+            {{/ if }}
+          </div>
+          <div class="add-item">
+          </div>
         </div>
       </div>
     </div>
