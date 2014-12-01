@@ -57,20 +57,26 @@ module.exports = {
     * image.
     */
     var image;
+    var shortCode;
+    var url = req.param('url');
     var userId = req.param('userId');
-    var shortUrl = req.param('shortUrl');
 
-    if ( !/^(http:\/\/|https:\/\/)/.test(shortUrl) ) {
-      shortUrl = 'https://' + shortUrl;
+    if ( !/^(http:\/\/|https:\/\/)/.test(url) ) {
+      url = 'https://' + url;
+    }
+
+    if ( !/\/$/.test(url) ) {
+      shortCode += '/';
     }
 
     /**
     * TODO: refactor this asap lol
-    * TODO: this will break if there's no trailing slash.
     */
-    shortUrl = url.parse(shortUrl).path.match(/\/p\/(.*)\//)[1];
+    shortCode = require('url').parse(url).path.match(/\/p\/(.*)\//)[1];
 
-    image = new Image({ shortUrl: shortUrl });
+    image = new Image({
+      shortCode: shortCode
+    });
     image.findOrCreate()
       .then(function(image) {
         return image.fetchViaShortCode();
@@ -93,6 +99,51 @@ module.exports = {
         console.error('There was an error fetching the image from instagram.', err);
         res.send(500);
       });
+  },
+
+  getComments: function(req, res) {
+    /**
+    * Fetches all the comments related to an image.
+    */
+    var imageId = escape(req.param('imageId'));
+
+    return new Image({
+      id: imageId
+    }).fetch({
+      withRelated: ['comments']
+    }).then(function(image) {
+      res.json({
+        data: image.related('comments')
+      });
+    }).catch(function(err) {
+      console.error('Error while fetching comments.', err);
+      res.send(500);
+    });
+  },
+
+  addComment: function(req, res) {
+    var text = req.param('commentText');
+    var userId = req.param('userId');
+    var imageId = req.param('imageId');
+
+    return new Image({
+      id: imageId
+    }).fetch({
+      withRelated: ['comments']
+    }).then(function(image) {
+      return image.related('comments').create({
+        text: text,
+        imageId: imageId,
+        userId: userId
+      }).yield(image).then(function(image) {
+        res.json({
+          data: image.toJSON()
+        });
+      });
+    }).catch(function(err) {
+      console.error('Error while fetching comments.', err);
+      res.send(500);
+    });
   }
 
 };

@@ -54,4 +54,7 @@ app.get('/images/:imageId', images.getOne);
 app.post('/images', images.post);
 app.post('/images/:imageId/items', images.addItem);
 
+app.get('/images/:imageId/comments', images.getComments);
+app.post('/images/:imageId/comments', images.addComment);
+
 module.exports = app;

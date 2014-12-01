@@ -7,13 +7,13 @@ var SubmitImage = React.createClass({
 
   handleSubmit: function(evt) {
     evt.preventDefault();
-    var shortUrl = this.refs.input.getDOMNode().value;
+    var url = this.refs.input.getDOMNode().value;
 
     ajax({
       type: 'POST',
       url: '/api/v1/images',
       data: {
-        shortUrl: shortUrl
+        url: url
       }
     }).then(function(response) {
       debugger;

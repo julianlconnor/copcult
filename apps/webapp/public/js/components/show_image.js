@@ -1,10 +1,11 @@
 /** @jsx React.DOM */
-var _ = require('lodash');
+
 var React = require('react');
 var ajax = require('../helpers/ajax');
 
-var ImageItems = require('./image_items');
 var AddItem = require('./add_item');
+var ImageItems = require('./image_items');
+var ImageComments = require('./image_comments');
 
 var ShowImages = React.createClass({
 
@@ -45,8 +46,9 @@ var ShowImages = React.createClass({
         <div className="col-md-6 col-md-offset-1 text-center">
           <img src={ this.state.image.standardResolution } />
           <p>{ this.state.image.caption }</p>
+          <ImageComments imageId={this.props.id} comments={this.state.image.comments} />
         </div>
-        <div className="col-md-3">
+        <div className="col-md-5">
           <ImageItems items={this.state.image.items} />
           <AddItem handleSubmit={this.addItem} />
         </div>

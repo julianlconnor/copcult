@@ -27,12 +27,18 @@ var Image = BaseModel.extend({
     return this.belongsToMany(require('./item'));
   },
 
+  comments: function() {
+    return this.hasMany(require('./comment'));
+  },
+
   fetchViaShortCode: function() {
     var clientID = settings.oauth.instagram.clientID;
-    var url = 'https://api.instagram.com/v1/media/shortcode/' + this.get('shortUrl') + '?client_id=' + clientID;
+    var url = 'https://api.instagram.com/v1/media/shortcode/' + this.get('shortCode') + '?client_id=' + clientID;
 
+    console.log(url);
     return request(url).then(function(response) {
       var data = JSON.parse(response[0].body).data;
+      console.log('data returned from insta', response);
       return data;
     });
   }
@@ -40,6 +46,7 @@ var Image = BaseModel.extend({
 }, {
   
   parseImageData: function(data) {
+    console.log('data', data);
     var caption = '';
     if ( data.caption && data.caption.text ) {
       caption = data.caption.text;

@@ -15,27 +15,11 @@ var defaultLocal = {
 };
 
 function renderTemplate(req, res, templateName, data) {
-  return res.render(templateName, _.extend(data, { 
-    user: req.user.omit('password'),
-    rawUser: JSON.stringify(req.user.omit('password'))
-  }));
-}
+  var user = req.user ? req.user.omit('password') : {};
 
-function renderLoggedOut(req, res) {
-  /**
-  * Fetch featured curators.
-  *
-  * TODO: actually make this featured. Will only fetch users for the time being.
-  */
-  return new User().fetchFeatured().then(function(collection) {
-    return res.render('loggedOut', _.extend(defaultLocal, {
-      featuredCurators: collection.toJSON()
-    }));
-  });
-}
-function renderLoggedIn(req, res) {
-  return res.render('loggedIn', _.extend(defaultLocal, {
-    user: JSON.stringify(req.user.omit('password'))
+  return res.render(templateName, _.extend(defaultLocal, data || {}, { 
+    user: user,
+    rawUser: JSON.stringify(user)
   }));
 }
 
@@ -52,14 +36,14 @@ app.use('/webapp/', express.static(__dirname));
 app.get('/', function(req, res) {
 
   if ( !req.user ) {
-    return renderLoggedOut(req, res);
+    return renderTemplate(req, res, 'loggedOut');
   }
 
   if ( !req.cookies.accessToken ) {
     res.cookie('accessToken', req.user.accessToken, { httpOnly: true });
   }
 
-  return renderLoggedIn(req, res);
+  return renderTemplate(req, res, 'loggedIn');
 });
 
 app.get('/images/:id', function(req, res) {
