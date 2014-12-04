@@ -16,7 +16,7 @@ var AddItem = React.createClass({
     return (
       <form onSubmit={this.handleSubmit}>
         <input ref="input" placeholder="Gear link.." />
-        <button>Add gear</button>
+        <button className="btn btn-default">Add gear</button>
       </form>
     );
   }

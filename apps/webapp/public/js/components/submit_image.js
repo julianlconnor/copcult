@@ -24,7 +24,7 @@ var SubmitImage = React.createClass({
     return (
       <form className="submit-image" onSubmit={this.handleSubmit}>
         <input ref="input" />
-        <button>Submit Image</button>
+        <button className="btn btn-default">Submit Image</button>
       </form>
     );
   }

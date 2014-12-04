@@ -12,4 +12,6 @@
 
 - Refactor api models to use bookshelf factories rather than deferred imports.
 - Implement proper access tokens.
+- Implement proper client side models and collections.
+- Image uploads for edited items. I.e., user uploads an image from a url or multipart.
 

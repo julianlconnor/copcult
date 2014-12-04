@@ -13,7 +13,7 @@ var AddComment = React.createClass({
     return (
       <form onSubmit={this.handleSubmit}>
         <input ref="input" />
-        <button>Add Comment</button>
+        <button className="btn btn-default">Add Comment</button>
       </form>
     );
   }

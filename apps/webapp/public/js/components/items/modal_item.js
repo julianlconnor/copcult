@@ -1,13 +1,16 @@
 /** @jsx React.DOM */
 
-var url = require('url');
 var React = require('react');
 
-var Item = React.createClass({
+var EditItem = require('./edit');
+var ShowItem = require('./show');
+
+var ModalItem = React.createClass({
 
   getInitialState: function() {
     return {
-      modalIsOpen: false
+      modalIsOpen: false,
+      editItem: false
     };
   },
 
@@ -25,34 +28,35 @@ var Item = React.createClass({
     });
   },
 
-  render: function() {
-    var item = this.props.item;
-    var source = url.parse(item.url).host.replace('www.', '');
+  editItem: function() {
+    this.setState({
+      editItem: true
+    });
+  },
 
-    if ( item.toJSON ) {
-      item = item.toJSON();
+  doneEditingItem: function() {
+    this.setState({
+      editItem: false
+    });
+  },
+
+  render: function() {
+    var contents;
+
+    if ( this.state.editItem ) {
+      contents = <EditItem item={this.props.item} doneEditingItem={this.doneEditingItem} />;
+    } else {
+      contents = <ShowItem item={this.props.item} onEdit={this.editItem} />;
     }
 
     return (
-      <div className={'item-wrapper-modal item-' + item.id} key={item.id}>
-        <h3>{item.name}</h3>
-        <img src={item.image} />
-        <div>
-          <h4>Buy new via <a href={item.url} className="small" target="_blank">{source}</a></h4>
-          {/* Add price for new */}
-          <div className="glyphicon glyphicon-new-window"></div>
-        </div>
-        <div>
-          <h4>Buy used via <a href="https://www.grailed.com" className="small" target="_blank">grailed.com</a></h4>
-          <div className="glyphicon glyphicon-new-window"></div>
-        </div>
-        {/* Add price for used */}
-        <h4>User pics, instagram tag <small>#copcult-{item.id}</small></h4>
+      <div className="item-wrapper-modal-wrapper">
+        {contents}
       </div>
     );
   }
 
 });
 
-module.exports = Item;
+module.exports = ModalItem;
 
