@@ -24,10 +24,6 @@
     window.jaded.user = JSON.parse('{{{ rawUser }}}');
   </script>
 
-  {{# if SERVE_COMPILED }}
-    <script src="/js/jaded.min.js"></script>
-  {{ else }}
-    <script src="/webapp/public/js/app.js"></script>
-  {{/ if }}
+  <script src="/build/js/jaded.min.js"></script>
 
 </html>

@@ -1,4 +1,5 @@
 module.exports = {
+
   stylesheets: {
     files: [
       '<%= stylesheetsDir %>/**/*.less',
@@ -7,15 +8,12 @@ module.exports = {
     tasks: ['less'],
   },
 
-  svgs: {
-    files: ['apps/shared/images/**/*.{svg,png}'],
-    tasks: ['grunticon']
-  },
-
-  images: {
-    files: ['apps/shared/images/**/*'],
-    tasks: ['copy:images']
-  },
+  browserify: {
+    files: [
+      'apps/webapp/public/js/**/*.js'
+    ],
+    tasks: ['browserify']
+  }
 
   // tests: {
   //   files: [
