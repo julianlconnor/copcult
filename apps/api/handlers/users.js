@@ -36,7 +36,13 @@ module.exports.getAll = function(req, res) {
 module.exports.images = function(req, res) {
   var userId = req.param('userId');
 
-  return new User({ id: userId }).fetch({ withRelated: 'images' }).then(function(user) {
+  return new User({ id: userId }).fetch({ 
+    withRelated: [{
+      images: function(qb) {
+        return qb.orderBy('created_at', 'desc');
+      }
+    }]
+  }).then(function(user) {
     res.json({
       data: user.related('images').toJSON()
     });

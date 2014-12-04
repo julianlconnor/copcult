@@ -3,6 +3,7 @@
 var $ = require('jquery');
 var React = require('react');
 var ReactRouter = require('react-router');
+var Modal = require('react-modal');
 
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.DefaultRoute;
@@ -18,7 +19,11 @@ var routes = (
   </Route>
 );
 
+var appElement = $('#content').get(0);
+
+Modal.setAppElement(appElement);
+
 ReactRouter.run(routes, ReactRouter.HistoryLocation, function (Handler, state) {
   var params = state.params;
-  React.render(<Handler params={params} />, $('#content').get(0));
+  React.render(<Handler params={params} />, appElement);
 });

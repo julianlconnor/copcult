@@ -22,12 +22,12 @@ app.get('/users/:user_id/images', users.images);
 /**
 * Storefront Handlers
 */
-var storefronts = require('./handlers/storefronts');
-
-app.get('/storefronts', storefronts.getAll);
-app.get('/storefronts/:storefrontId', storefronts.getOne);
-app.post('/storefronts', storefronts.post);
-app.delete('/storefronts/:storefrontId/items/:itemId', storefronts.deleteItem);
+// var storefronts = require('./handlers/storefronts');
+//
+// app.get('/storefronts', storefronts.getAll);
+// app.get('/storefronts/:storefrontId', storefronts.getOne);
+// app.post('/storefronts', storefronts.post);
+// app.delete('/storefronts/:storefrontId/items/:itemId', storefronts.deleteItem);
 
 /**
 * Item Handlers
@@ -39,11 +39,11 @@ app.post('/items', items.post);
 /**
 * Realtime Tag Handlers
 */
-var realtime = require('./handlers/realtime');
-
-app.get('/realtime', realtime.get);
-app.post('/realtime', realtime.post);
-app.get('/realtime/subscriptions', realtime.listSubscriptions);
+// var realtime = require('./handlers/realtime');
+//
+// app.get('/realtime', realtime.get);
+// app.post('/realtime', realtime.post);
+// app.get('/realtime/subscriptions', realtime.listSubscriptions);
 
 /**
 * Images Handlers

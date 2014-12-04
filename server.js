@@ -62,12 +62,15 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'build')));
 
   /**
-  * TODO: add an authentication layer.
+  * TODO: add an authentication layer, namely an access token.
+  * All user ids are passed via qs param, no bueno.
   */
   app.use('/api/v1', /* TODO: check access token, */ api);
 
   /**
   * Passport.
+  *
+  * TODO: successRedirect needs to be dynamic, needs to point to 'next' url.
   */
   app.get('/auth/instagram', passport.authenticate('instagram'));
   app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/login', successRedirect: '/' }));

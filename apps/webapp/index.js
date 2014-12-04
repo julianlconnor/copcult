@@ -36,14 +36,14 @@ app.use('/webapp/', express.static(__dirname));
 app.get('/', function(req, res) {
 
   if ( !req.user ) {
-    return renderTemplate(req, res, 'loggedOut');
+    return renderTemplate(req, res, 'logged_out');
   }
 
   if ( !req.cookies.accessToken ) {
     res.cookie('accessToken', req.user.accessToken, { httpOnly: true });
   }
 
-  return renderTemplate(req, res, 'loggedIn');
+  return renderTemplate(req, res, 'logged_in');
 });
 
 app.get('/images/:id', function(req, res) {
@@ -54,7 +54,7 @@ app.get('/images/:id', function(req, res) {
   }).fetch({
     withRelated: ['users', 'items', 'comments']
   }).then(function(image) {
-    return renderTemplate(req, res, 'showImage', image.toJSON());
+    return renderTemplate(req, res, 'show_image', image.toJSON());
   }).catch(function(err) {
     console.error(err);
     res.send(500, 'Unable to find image.');

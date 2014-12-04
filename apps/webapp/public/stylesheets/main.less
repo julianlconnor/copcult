@@ -6,6 +6,8 @@
 @import "./profile.less";
 @import "./header.less";
 @import "./comments.less";
+@import "./hero.less";
+@import "./modal.less";
 
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -14,6 +16,14 @@
        url('/webapp/public/js/lib/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'),
        url('/webapp/public/js/lib/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
        url('/webapp/public/js/lib/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+a,
+a:visited {
+  color: @black;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 body, p {

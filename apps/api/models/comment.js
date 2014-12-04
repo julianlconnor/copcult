@@ -6,10 +6,16 @@ var Comment = BaseModel.extend({
   hasTimestamps: ['created_at', 'updated_at'],
 
   image: function() {
+    /**
+    * TODO: refactor this into a factory.
+    */
     return this.belongsTo(require('./image'));
   },
 
   user: function() {
+    /**
+    * TODO: refactor this into a factory.
+    */
     return this.belongsTo(require('./user'));
   }
 

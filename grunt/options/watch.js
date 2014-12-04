@@ -17,11 +17,11 @@ module.exports = {
     tasks: ['copy:images']
   },
 
-  tests: {
-    files: [
-      'test/**/*.js',
-      'apps/api/**/*.js'
-    ],
-    tasks: ['simplemocha']
-  }
+  // tests: {
+  //   files: [
+  //     'test/**/*.js',
+  //     'apps/api/**/*.js'
+  //   ],
+  //   tasks: ['simplemocha']
+  // }
 };

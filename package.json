@@ -71,6 +71,7 @@
     "wd": "~0.2.13",
     "grunt-simple-mocha": "~0.4.0",
     "sinon": "~1.10.3",
-    "backbone": "~1.1.2"
+    "backbone": "~1.1.2",
+    "react-modal": "0.0.5"
   }
 }

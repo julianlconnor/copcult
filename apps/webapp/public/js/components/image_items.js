@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var Item = require('./item');
+var Item = require('./items/item');
 
 var ImageItems = React.createClass({
 

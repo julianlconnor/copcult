@@ -3,9 +3,11 @@
 var React = require('react');
 var ajax = require('../helpers/ajax');
 
-var AddItem = require('./add_item');
+var AddItem = require('./items/add');
 var ImageItems = require('./image_items');
 var ImageComments = require('./image_comments');
+
+var Caption = require('./caption');
 
 var ShowImages = React.createClass({
 
@@ -46,7 +48,7 @@ var ShowImages = React.createClass({
       <div className="show-image">
         <div className="col-md-6 col-md-offset-1">
           <img className="instagram-image" src={this.state.image.standardResolution} />
-          <p>{this.state.image.caption}</p>
+          <Caption text={this.state.image.caption} />
           <ImageComments imageId={this.props.id} comments={this.state.image.comments} />
         </div>
         <div className="col-md-5">
