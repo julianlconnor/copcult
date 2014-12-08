@@ -10,7 +10,7 @@ var HomeView = React.createClass({
   render: function() {
     return (
       <div>
-        <h1>Submitted Images</h1>
+        <h1>Your Submitted Images</h1>
         <ImageList />
         <h1>Submit an Image</h1>
         <SubmitImage />

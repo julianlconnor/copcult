@@ -15,16 +15,17 @@ var SubmitImage = React.createClass({
       data: {
         url: url
       }
-    }).then(function(response) {
-      debugger;
     });
   },
 
   render: function() {
     return (
-      <form className="submit-image" onSubmit={this.handleSubmit}>
-        <input ref="input" />
-        <button className="btn btn-default">Submit Image</button>
+      <form className="form-inline" role="form" onSubmit={this.handleSubmit}>
+        <div className="form-group">
+          <label className="sr-only" for="input-instagram-link">Instagram Link</label>
+          <input type="text" ref="input" id="input-instagram-link" className="form-control" placeholder="Instagram Link" />
+        </div>
+        <button className="btn btn-default">Submit Instagram Link</button>
       </form>
     );
   }

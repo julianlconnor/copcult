@@ -11,8 +11,11 @@ var AddComment = React.createClass({
 
   render: function() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input ref="input" />
+      <form className="form-inline" role="form" onSubmit={this.handleSubmit}>
+        <div className="form-group">
+          <label className="sr-only" for="input-comment">Comment Text</label>
+          <input type="text" ref="input" id="input-comment" className="form-control" placeholder="Comment text.." />
+        </div>
         <button className="btn btn-default">Add Comment</button>
       </form>
     );

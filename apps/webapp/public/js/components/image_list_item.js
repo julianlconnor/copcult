@@ -7,11 +7,11 @@ var Image = React.createClass({
   render: function() {
     console.log(this.props.data);
     return (
-      <li>
+      <div className="col-md-3">
         <a href={'/images/' + this.props.data.id}>
-          <img src={this.props.data.thumbnail} />
+          <img src={this.props.data.standardResolution} />
         </a>
-      </li>
+      </div>
     );
   }
 
