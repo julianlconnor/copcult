@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'less',
-    'requirejs'
+    'browserify'
   ]);
 
   grunt.registerTask('hooks', ['clean:gitHooks', 'shell:gitHooks']);
