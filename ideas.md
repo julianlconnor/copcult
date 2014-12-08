@@ -7,6 +7,7 @@
 - Track bounty on images would be nice, sort by highest bounty.
   - Need a way to notify users who are tracking images.
 - How is user klout generated?
+- Autocomplete for filling out brand name.
 
 # Technical
 
