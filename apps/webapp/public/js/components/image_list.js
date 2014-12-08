@@ -4,7 +4,7 @@ var React = require('react');
 
 var ImageListItem = require('./image_list_item');
 
-var ajax = require('../helpers/ajax');
+var ajax = require('ajax');
 
 var Images = React.createClass({
 

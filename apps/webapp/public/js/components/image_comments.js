@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var ajax = require('../helpers/ajax');
+var ajax = require('ajax');
 
 var Comment = require('./comments/comment');
 var AddComment = require('./comments/add');

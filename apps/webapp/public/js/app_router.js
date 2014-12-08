@@ -11,10 +11,12 @@ var DefaultRoute = ReactRouter.DefaultRoute;
 var AppWrapper = require('./components/app_wrapper');
 var HomeView = require('./views/home');
 var ImageView = require('./views/image');
+var BrandView = require('./views/brand');
 
 var routes = (
   <Route handler={AppWrapper} path="/">
     <Route name="images" path="/images/:imageId" handler={ImageView} />
+    <Route name="brand" path="/brands/:brandId" handler={BrandView} />
     <DefaultRoute handler={HomeView} />
   </Route>
 );

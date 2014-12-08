@@ -23,7 +23,7 @@ module.exports = {
     new Image({
       id: escape(imageId)
     }).fetch({
-      withRelated: ['users', 'items', 'comments']
+      withRelated: ['users', 'items', 'items.brand', 'comments']
     }).then(function(image) {
       return res.json({ data: image.toJSON() });
     }).catch(function(err) {

@@ -9,11 +9,13 @@ var ShowItem = React.createClass({
     var item = this.props.item;
     var source = url.parse(item.url).host.replace('www.', '');
 
+    var brandEl = item.brand.name ? <a href={'/brands/' + item.brand.id} className="small">by {item.brand.name}</a> : null;
+
     return (
       <div className={'item-wrapper-modal item-' + item.id} key={item.id}>
         <div className="top-wrapper">
-          <h3>{item.name}</h3>
-          <p className="small" onClick={this.props.onEdit}>Item missing data? Click here to edit.</p>
+          <h3>{item.name} {brandEl}</h3>
+          <a className="small" onClick={this.props.onEdit}>Item missing data? Click here to edit.</a>
         </div>
 
         <img src={item.image} />

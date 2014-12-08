@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var ajax = require('../helpers/ajax');
+var ajax = require('ajax');
 
 var AddItem = require('./items/add');
 var ImageItems = require('./image_items');

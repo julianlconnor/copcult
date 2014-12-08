@@ -35,6 +35,7 @@ app.get('/users/:user_id/images', users.images);
 var items = require('./handlers/items');
 
 app.post('/items', items.post);
+app.put('/items/:itemId', items.put);
 
 /**
 * Realtime Tag Handlers

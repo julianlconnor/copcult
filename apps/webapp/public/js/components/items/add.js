@@ -14,8 +14,11 @@ var AddItem = React.createClass({
 
   render: function() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input ref="input" placeholder="Gear link.." />
+      <form className="form-inline" role="form" onSubmit={this.handleSubmit}>
+        <div className="form-group">
+          <label className="sr-only" for="input-link">Gear link</label>
+          <input type="text" ref="input" id="input-link" className="form-control" placeholder="Gear link.." />
+        </div>
         <button className="btn btn-default">Add gear</button>
       </form>
     );

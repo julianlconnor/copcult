@@ -1,5 +1,5 @@
 var BaseModel = require('./base');
-var ajax = require('../helpers/ajax');
+var ajax = require('ajax');
   
 var User = BaseModel.extend({
 
