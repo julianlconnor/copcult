@@ -1,0 +1,56 @@
+.border-radius(@arguments) {
+  -webkit-border-radius: @arguments;
+  -moz-border-radius: @arguments;
+  border-radius: @arguments;
+}
+
+.placeholder(@color) {
+  &::-webkit-input-placeholder { /* WebKit browsers */
+    color: @color;
+    /* Chrome needs the !important */
+    opacity: 0.75 !important;
+  }
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: @color;
+    opacity: 0.75 !important;
+  }
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: @color;
+    opacity: 0.75 !important;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: @color;
+    opacity: 0.75 !important;
+  }
+}
+
+.transition (@value1, @value2:X, ...)
+{
+    @transition: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`;
+    -webkit-transition: @transition;
+    -moz-transition:    @transition;
+    -ms-transition:     @transition;
+    -o-transition:      @transition;
+}
+
+.animation (@name, @iteration, @ease, @duration)
+{
+    -webkit-animation-name: @name;
+    -webkit-animation-iteration-count: @iteration;
+    -webkit-animation-timing-function: @ease;
+    -webkit-animation-duration: @duration;
+
+    animation-name: @name;
+    animation-iteration-count: @iteration;
+    animation-timing-function: @ease;
+    animation-duration: @duration;
+}
+
+.gradient (@startColor, @endColor) {
+    background-color: @startColor;
+    background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+    background: -webkit-linear-gradient(top, @startColor, @endColor);
+    background: -moz-linear-gradient(top, @startColor, @endColor);
+    background: -ms-linear-gradient(top, @startColor, @endColor);
+    background: -o-linear-gradient(top, @startColor, @endColor);
+}
