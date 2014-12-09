@@ -1,39 +1,37 @@
 /** @jsx React.DOM */
 
+var ajax = require('ajax');
 var React = require('react');
 
 var ImageListItem = require('./image_list_item');
-
-var ajax = require('ajax');
+var ImageCollection = require('../collections/images');
 
 var Images = React.createClass({
 
   getInitialState: function() {
     return {
-      images: []
+      images: new ImageCollection()
     };
   },
 
   componentWillMount: function() {
-    ajax({
+    return ajax({
       url: '/api/v1/users/' + jaded.user.id + '/images',
       type: 'GET'
     }).then(function(response) {
       this.setState({
-        images: response.data
+        images: new ImageCollection(response.data)
       });
     }.bind(this));
   },
 
   render: function() {
     var images = this.state.images.map(function(image) {
-      return <ImageListItem data={image} key={image.id} />;
+      return <ImageListItem model={image} key={image.id} />;
     });
 
     return (
-      <div className="row images">
-        {images}
-      </div>
+      <div className="row images">{images}</div>
     );
   }
 

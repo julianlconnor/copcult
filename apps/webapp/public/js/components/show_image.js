@@ -1,58 +1,34 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var ajax = require('ajax');
 
 var AddItem = require('./items/add');
+var Image = require('./images/image');
 var ImageItems = require('./image_items');
 var ImageComments = require('./image_comments');
 
 var Caption = require('./caption');
 
-var ShowImages = React.createClass({
+var ShowImage = React.createClass({
 
-  getInitialState: function() {
-    return {
-      image: {
-        items: [],
-        comments: []
-      }
-    };
-  },
-
-  componentWillMount: function() {
-    return ajax({
-      url: '/api/v1/images/' + this.props.id,
-      type: 'GET'
-    }).then(function(response) {
-      this.setState({
-        image: response.data
-      });
-    }.bind(this));
-  },
+  mixins: [
+    React.BackboneMixin('imageModel')
+  ],
 
   addItem: function(data) {
-    ajax({
-      type: 'POST',
-      url: '/api/v1/images/' + this.props.id + '/items',
-      data: data,
-    }).then(function(response) {
-      this.setState({
-        image: response.data
-      });
-    }.bind(this));
+    return this.props.imageModel.addItem(data).then(this.forcedUpdate);
   },
 
   render: function() {
     return (
       <div className="show-image">
         <div className="col-md-6 col-md-offset-1">
-          <img className="instagram-image" src={this.state.image.standardResolution} />
-          <Caption text={this.state.image.caption} />
-          <ImageComments imageId={this.props.id} comments={this.state.image.comments} />
+          <Image imageModel={this.props.imageModel} />
+          <Caption text={this.props.imageModel.get('caption')} />
+          <ImageComments imageId={this.props.imageModel.id} comments={this.props.imageModel.get('comments')} />
         </div>
         <div className="col-md-5">
-          <ImageItems items={this.state.image.items} />
+          <ImageItems items={this.props.imageModel.get('items')} />
           <AddItem handleSubmit={this.addItem} />
         </div>
       </div>
@@ -61,4 +37,4 @@ var ShowImages = React.createClass({
 
 });
 
-module.exports = ShowImages;
+module.exports = ShowImage;

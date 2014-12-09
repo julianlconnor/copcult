@@ -75,6 +75,7 @@
     "backbone": "~1.1.2",
     "react-modal": "0.0.5",
     "grunt-browserify": "~3.2.1",
-    "reactify": "~0.17.1"
+    "reactify": "~0.17.1",
+    "react.backbone": "~0.5.0"
   }
 }

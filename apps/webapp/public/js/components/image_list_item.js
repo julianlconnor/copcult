@@ -5,11 +5,11 @@ var React = require('react');
 var Image = React.createClass({
 
   render: function() {
-    console.log(this.props.data);
+    console.log(this.props.model.toJSON());
     return (
       <div className="col-md-3">
-        <a href={'/images/' + this.props.data.id}>
-          <img src={this.props.data.standardResolution} />
+        <a href={'/images/' + this.props.model.get('id')}>
+          <img src={this.props.model.get('standardResolution')} />
         </a>
       </div>
     );

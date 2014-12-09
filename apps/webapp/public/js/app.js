@@ -1,7 +1,7 @@
-var $ = require('jquery');
+require('react');
+require('react.backbone');
+require('./app_router');
+require('jquery').ajaxSetup({ cache: false });
+
 // var FastClick = require('fastclick');
-
-var AppRouter = require('./app_router');
-
-$.ajaxSetup({ cache: false });
 // FastClick.attach(document.body);
