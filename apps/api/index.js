@@ -18,6 +18,7 @@ app.get('/users', users.getAll);
 app.post('/users', users.post);
 
 app.get('/users/:user_id/images', users.images);
+app.get('/users/:user_id/feed', users.feed);
 
 /**
 * Storefront Handlers

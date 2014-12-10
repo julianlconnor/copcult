@@ -22,6 +22,7 @@ var settings = require('./config/settings')();
 */
 var api = require('./apps/api');
 var webapp = require('./apps/webapp');
+var shared = require('./apps/shared');
 
 var app = express();
 app.configure(function(){
@@ -81,6 +82,7 @@ app.configure(function(){
     res.redirect('/');
   });
 
+  app.use(shared);
   app.use(webapp); // last because of route catch-all (.*)
 
   if ( !settings.onDev() ) {

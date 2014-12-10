@@ -1,6 +1,6 @@
+var _ = require('lodash');
+var Image = require('../models/image');
 var User = require('../models/user');
-var Promise = require('bluebird');
-var bcrypt = Promise.promisifyAll(require('bcrypt'));
 
 module.exports.post = function(req, res) {
   var email = req.param('email');
@@ -8,20 +8,9 @@ module.exports.post = function(req, res) {
   var password = req.param('password');
 
 
-  return bcrypt.genSaltAsync(10).then(function(salt) {
-    return bcrypt.hashAsync(password, salt);
-  }).then(function(hash) {
-    return new User({
-      email: email,
-      username: username,
-      password: hash
-    }).save().then(function(user) {
-      res.json(user.omit('password'));
-    }).catch(function(err) {
-      console.error('Unable to create user', err);
-      res.send('Unable to create user');
-    });
-  });
+  /**
+  * TODO: Implement
+  */
 };
 
 module.exports.getAll = function(req, res) {
@@ -43,11 +32,37 @@ module.exports.images = function(req, res) {
       }
     }]
   }).then(function(user) {
-    res.json({
+    return res.json({
       data: user.related('images').toJSON()
     });
   }).catch(function() {
     console.error('There was an error fetching the user with the id of ', userId, '\'s feed.');
-    res.send(500, 'There was an error fetching the user with the id of ', userId, '\'s feed.');
+    return res.send(500, 'There was an error fetching the user with the id of ', userId, '\'s feed.');
+  });
+};
+
+module.exports.feed = function(req, res) {
+  var userId = escape(req.param('userId'));
+
+  return new User({ id: userId }).fetch({
+    withRelated: ['images']
+  }).then(function(user) {
+    var imageIds = user.related('images').map(function(image) {
+      return image.id;
+    });
+
+    return new Image().query(function(qb) {
+      return qb.orderBy('created_at', 'desc').limit(15).whereNotIn('id', imageIds);
+    }).fetchAll({
+      withRelated: ['users', 'items', 'comments']
+    }).then(function(images) {
+      return res.json({
+        data: images.toJSON()
+      });
+    }).catch(function(err) {
+      console.error(err);
+      console.error('There was an error fetching the user with the id of ', userId, '\'s feed.');
+      return res.send(500, 'There was an error fetching the user with the id of ', userId, '\'s feed.');
+    });
   });
 };

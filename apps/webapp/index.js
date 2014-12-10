@@ -58,22 +58,22 @@ app.get('/images/:id', function(req, res) {
   });
 });
 
-app.get('/:username', function(req, res) {
-  /**
-  * TODO: make this the last possible route.
-  * TODO: blacklist of usernames
-  */
-  new User({
-    instagramUsername: escape(req.param('username'))
-  })
-  .fetch({ 
-    withRelated: ['images']
-  }).then(function(user) {
-    res.render('userProfile', user.toJSON());
-  }).catch(function() {
-    res.send(500, 'Storefront not found.');
-  });
-});
+// app.get('/:username', function(req, res) {
+//   /**
+//   * TODO: make this the last possible route.
+//   * TODO: blacklist of usernames
+//   */
+//   new User({
+//     instagramUsername: escape(req.param('username'))
+//   })
+//   .fetch({ 
+//     withRelated: ['images']
+//   }).then(function(user) {
+//     res.render('userProfile', user.toJSON());
+//   }).catch(function() {
+//     res.send(500, 'Storefront not found.');
+//   });
+// });
 
 module.exports = app;
 
