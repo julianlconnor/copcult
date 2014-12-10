@@ -44,9 +44,9 @@ var ModalItem = React.createClass({
     var contents;
 
     if ( this.state.editItem ) {
-      contents = <EditItem item={this.props.item} doneEditingItem={this.doneEditingItem} />;
+      contents = <EditItem itemModel={this.props.itemModel} doneEditingItem={this.doneEditingItem} />;
     } else {
-      contents = <ShowItem item={this.props.item} onEdit={this.editItem} />;
+      contents = <ShowItem itemModel={this.props.itemModel} onEdit={this.editItem} />;
     }
 
     return (

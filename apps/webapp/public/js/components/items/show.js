@@ -4,23 +4,27 @@ var url = require('url');
 var React = require('react');
 
 var ShowItem = React.createClass({
+
+  mixins: [
+    React.BackboneMixin('itemModel')
+  ],
   
   render: function() {
-    var item = this.props.item;
-    var source = url.parse(item.url).host.replace('www.', '');
+    var item = this.props.itemModel;
+    var source = url.parse(item.get('url')).host.replace('www.', '');
 
-    var brandEl = item.brand.name ? <a href={'/brands/' + item.brand.id} className="small">by {item.brand.name}</a> : null;
+    var brandEl = item.get('brand').name ? <a href={'/brands/' + item.get('brand').id} className="small">by {item.get('brand').name}</a> : null;
 
     return (
       <div className={'item-wrapper-modal item-' + item.id} key={item.id}>
         <div className="top-wrapper">
-          <h4>{item.name} {brandEl}</h4>
+          <h4>{item.get('name')} {brandEl}</h4>
           <a className="small" onClick={this.props.onEdit}>Item missing data? Click here to edit.</a>
         </div>
 
-        <img src={item.image} />
+        <img src={item.get('image')} />
         <div>
-          <p>Buy new via <a href={item.url} className="small" target="_blank">{source}</a></p>
+          <p>Buy new via <a href={item.get('url')} className="small" target="_blank">{source}</a></p>
           {/* Add price for new */}
           <div className="glyphicon glyphicon-new-window"></div>
         </div>

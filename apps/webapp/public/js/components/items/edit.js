@@ -13,14 +13,10 @@ var EditItem = React.createClass({
     var name = this.refs.name.getDOMNode().value;
     var url = this.refs.url.getDOMNode().value;
 
-    return ajax({
-      url: '/api/v1/items/' + this.props.item.id,
-      type: 'PUT',
-      data: {
-        url: url,
-        name: name,
-        brand: brand
-      }
+    return this.props.itemModel.update({
+      url: url,
+      name: name,
+      brand: brand
     }).then(this.props.doneEditingItem);
   },
   
@@ -30,17 +26,20 @@ var EditItem = React.createClass({
         <p onClick={this.props.doneEditingItem}>Back</p>
         <div className="row">
           <label for="input-brand" className="u-full-width">Brand</label>
-          <input ref="brand" type="text" className="u-full-width" id="input-brand" placeholder="Brand" defaultValue={this.props.item.brand.name} />
+          <input ref="brand" type="text" className="u-full-width" id="input-brand"
+              placeholder="Brand" defaultValue={this.props.itemModel.get('brand').name} />
         </div>
 
         <div className="row">
           <label for="input-name" className="u-full-width">Name</label>
-          <input ref="name" type="text" className="u-full-width" id="input-name" placeholder="Name" defaultValue={this.props.item.name} />
+          <input ref="name" type="text" className="u-full-width" id="input-name"
+              placeholder="Name" defaultValue={this.props.itemModel.get('name')} />
         </div>
 
         <div className="row">
           <label for="input-link" className="u-full-width">Link</label>
-          <input ref="url" type="text" className="u-full-width" id="input-link" placeholder="Link" defaultValue={this.props.item.url} />
+          <input ref="url" type="text" className="u-full-width" id="input-link"
+              placeholder="Link" defaultValue={this.props.itemModel.get('url')} />
         </div>
 
         <div className="row">

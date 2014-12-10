@@ -1,12 +1,13 @@
 var BaseModel = require('./base');
 
-var Comments = require('../collections/comments');
+var CommentCollection = require('../collections/comments');
 var ItemCollection = require('../collections/items');
 
 var Image = BaseModel.extend({
 
   defaults: {
-    items: new ItemCollection()
+    items: new ItemCollection(),
+    comments: new CommentCollection()
   },
 
   fetch: function() {
@@ -27,8 +28,10 @@ var Image = BaseModel.extend({
   parse: function(response) {
     var attrs = response;
 
-    attrs.comments = new Comments(attrs.comments);
     attrs.caption = attrs.caption || '';
+
+    attrs.items = new ItemCollection(attrs.items);
+    attrs.comments = new CommentCollection(attrs.comments);
 
     return attrs;
   }

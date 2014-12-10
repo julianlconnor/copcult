@@ -30,15 +30,11 @@ var Item = React.createClass({
 
   render: function() {
     var brandEl;
-    var item = this.props.item;
-    var source = url.parse(item.url).host.replace('www.', '');
+    var item = this.props.itemModel;
+    var source = url.parse(item.get('url')).host.replace('www.', '');
 
-    if ( item.toJSON ) {
-      item = item.toJSON();
-    }
-
-    if ( item.brand && item.brand.name ) {
-      brandEl = <p>by {item.brand.name} <span className="small">via {source}</span></p>;
+    if ( item.get('brand') && item.get('brand').name ) {
+      brandEl = <p>by {item.get('brand').name} <span className="small">via {source}</span></p>;
     } else {
       brandEl = <span className="small">via {source}</span>;
     }
@@ -47,12 +43,12 @@ var Item = React.createClass({
       <div className={'item-wrapper item-' + item.id} key={item.id}>
         <a onClick={this.openModal}>
           <div>
-            <h3>{item.name}</h3>
+            <h3>{item.get('name')}</h3>
             {brandEl}
           </div>
         </a>
         <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>
-          <ModalItem item={this.props.item} />
+          <ModalItem itemModel={item} />
         </Modal>
       </div>
     );
