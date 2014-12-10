@@ -6,10 +6,10 @@ var Comment = React.createClass({
   render: function() {
     return (
       <li className="comment row">
-        <div className="col-md-2">
+        <div className="two columns">
           <img className="img-circle" src={this.props.comment.user.instagramProfilePicture} />
         </div>
-        <article className="col-md-10">{this.props.comment.text}</article>
+        <article className="ten columns">{this.props.comment.text}</article>
       </li>
     );
   }

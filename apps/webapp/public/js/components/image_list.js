@@ -31,7 +31,7 @@ var Images = React.createClass({
     });
 
     return (
-      <div className="row images">{images}</div>
+      <div className="image-list">{images}</div>
     );
   }
 

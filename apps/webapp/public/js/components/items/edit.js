@@ -26,34 +26,27 @@ var EditItem = React.createClass({
   
   render: function() {
     return (
-      <form className="form-horizontal" role="form" onSubmit={this.updateItem}>
+      <form onSubmit={this.updateItem}>
         <p onClick={this.props.doneEditingItem}>Back</p>
-        <div className="form-group">
-          <label for="input-brand" className="col-sm-2 control-label">Brand</label>
-          <div className="col-sm-10">
-            <input ref="brand" type="text" className="form-control" id="input-brand" placeholder="Brand" defaultValue={this.props.item.brand.name} />
-          </div>
+        <div className="row">
+          <label for="input-brand" className="u-full-width">Brand</label>
+          <input ref="brand" type="text" className="u-full-width" id="input-brand" placeholder="Brand" defaultValue={this.props.item.brand.name} />
         </div>
 
-        <div className="form-group">
-          <label for="input-name" className="col-sm-2 control-label">Name</label>
-          <div className="col-sm-10">
-            <input ref="name" type="text" className="form-control" id="input-name" placeholder="Name" defaultValue={this.props.item.name} />
-          </div>
+        <div className="row">
+          <label for="input-name" className="u-full-width">Name</label>
+          <input ref="name" type="text" className="u-full-width" id="input-name" placeholder="Name" defaultValue={this.props.item.name} />
         </div>
 
-        <div className="form-group">
-          <label for="input-link" className="col-sm-2 control-label">Link</label>
-          <div className="col-sm-10">
-            <input ref="url" type="url" className="form-control" id="input-link" placeholder="Link" defaultValue={this.props.item.url} />
-          </div>
+        <div className="row">
+          <label for="input-link" className="u-full-width">Link</label>
+          <input ref="url" type="text" className="u-full-width" id="input-link" placeholder="Link" defaultValue={this.props.item.url} />
         </div>
 
-        <div className="form-group">
-          <div className="col-sm-offset-2 col-sm-10">
-            <button className="btn btn-default">Update item</button>
-          </div>
+        <div className="row">
+          <button className="u-full-width">Update item</button>
         </div>
+
       </form>
     );
   }

@@ -7,7 +7,7 @@ var Image = React.createClass({
   render: function() {
     console.log(this.props.model.toJSON());
     return (
-      <div className="col-md-3">
+      <div className="image-list-item">
         <a href={'/images/' + this.props.model.get('id')}>
           <img src={this.props.model.get('standardResolution')} />
         </a>

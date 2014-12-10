@@ -22,9 +22,7 @@ var ImageView = React.createClass({
 
   render: function() {
     return (
-      <div className="row">
-        <ShowImage imageModel={this.state.image} />
-      </div>
+      <ShowImage imageModel={this.state.image} />
     );
   }
 });

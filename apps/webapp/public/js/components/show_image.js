@@ -21,13 +21,13 @@ var ShowImage = React.createClass({
 
   render: function() {
     return (
-      <div className="show-image">
-        <div className="col-md-6 col-md-offset-1">
+      <div className="row show-image">
+        <div className="seven columns">
           <Image imageModel={this.props.imageModel} />
           <Caption text={this.props.imageModel.get('caption')} />
           <ImageComments imageId={this.props.imageModel.id} comments={this.props.imageModel.get('comments')} />
         </div>
-        <div className="col-md-5">
+        <div className="five columns">
           <ImageItems items={this.props.imageModel.get('items')} />
           <AddItem handleSubmit={this.addItem} />
         </div>

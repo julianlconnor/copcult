@@ -14,12 +14,10 @@ var AddItem = React.createClass({
 
   render: function() {
     return (
-      <form className="form-inline" role="form" onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          <label className="sr-only" for="input-link">Gear link</label>
-          <input type="text" ref="input" id="input-link" className="form-control" placeholder="Gear link.." />
-        </div>
-        <button className="btn btn-default">Add gear</button>
+      <form onSubmit={this.handleSubmit}>
+        <label for="input-link" className="u-full-width">Gear link</label>
+        <input type="text" ref="input" id="input-link" className="u-full-width" placeholder="Gear link.." />
+        <button className="u-full-width">Add gear</button>
       </form>
     );
   }

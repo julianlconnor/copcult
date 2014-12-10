@@ -14,22 +14,22 @@ var ShowItem = React.createClass({
     return (
       <div className={'item-wrapper-modal item-' + item.id} key={item.id}>
         <div className="top-wrapper">
-          <h3>{item.name} {brandEl}</h3>
+          <h4>{item.name} {brandEl}</h4>
           <a className="small" onClick={this.props.onEdit}>Item missing data? Click here to edit.</a>
         </div>
 
         <img src={item.image} />
         <div>
-          <h4>Buy new via <a href={item.url} className="small" target="_blank">{source}</a></h4>
+          <p>Buy new via <a href={item.url} className="small" target="_blank">{source}</a></p>
           {/* Add price for new */}
           <div className="glyphicon glyphicon-new-window"></div>
         </div>
         <div>
-          <h4>Buy used via <a href="https://www.grailed.com" className="small" target="_blank">grailed.com</a></h4>
+          <p>Buy used via <a href="https://www.grailed.com" className="small" target="_blank">grailed.com</a></p>
           <div className="glyphicon glyphicon-new-window"></div>
         </div>
         {/* Add price for used */}
-        <h4>User pics, instagram tag <small>#copcult-{item.id}</small></h4>
+        <p>User pics, instagram tag <small>#copcult-{item.id}</small></p>
 
       </div>
     );
