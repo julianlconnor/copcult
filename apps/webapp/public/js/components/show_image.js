@@ -16,7 +16,7 @@ var ShowImage = React.createClass({
   ],
 
   addItem: function(data) {
-    return this.props.imageModel.addItem(data).then(this.forcedUpdate);
+    return this.props.imageModel.addItem(data);
   },
 
   render: function() {

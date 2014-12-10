@@ -44,6 +44,10 @@ module.exports = {
     ]).spread(function(image, itemAttrs) {
       return image.related('items').create(itemAttrs).yield(image);
     }).then(function(image) {
+      return image.fetch({
+        withRelated: ['users', 'items', 'items.brand', 'comments']
+      });
+    }).then(function(image) {
       res.json({ data: image.toJSON() });
     }).catch(function(err) {
       console.error('There was an error adding the item to the image.', err);
