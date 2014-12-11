@@ -16,7 +16,6 @@ var exphbs = require('express3-handlebars');
 
 var settings = require('./config/settings')();
 
-
 /**
 * Rack style apps.
 */
