@@ -44,25 +44,13 @@ module.exports.images = function(req, res) {
 module.exports.feed = function(req, res) {
   var userId = escape(req.param('userId'));
 
-  return new User({ id: userId }).fetch({
-    withRelated: ['images']
-  }).then(function(user) {
-    var imageIds = user.related('images').map(function(image) {
-      return image.id;
+  return new User({ id: userId }).fetchFeed().then(function(images) {
+    return res.json({
+      data: images.toJSON()
     });
-
-    return new Image().query(function(qb) {
-      return qb.orderBy('created_at', 'desc').limit(15).whereNotIn('id', imageIds);
-    }).fetchAll({
-      withRelated: ['users', 'items', 'comments']
-    }).then(function(images) {
-      return res.json({
-        data: images.toJSON()
-      });
-    }).catch(function(err) {
-      console.error(err);
-      console.error('There was an error fetching the user with the id of ', userId, '\'s feed.');
-      return res.send(500, 'There was an error fetching the user with the id of ', userId, '\'s feed.');
-    });
+  }).catch(function(err) {
+    console.error(err);
+    console.error('There was an error fetching the user with the id of ', userId, '\'s feed.');
+    return res.send(500, 'There was an error fetching the user with the id of ', userId, '\'s feed.');
   });
 };

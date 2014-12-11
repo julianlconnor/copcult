@@ -2,6 +2,7 @@ var Promise = require('bluebird');
 var request = Promise.promisify(require('request'));
 
 var BaseModel = require('./base');
+var Image = require('./image');
 
 var User = BaseModel.extend({
 
@@ -24,13 +25,18 @@ var User = BaseModel.extend({
   },
 
   fetchFeed: function() {
-    var url = 'https://api.instagram.com/v1/users/self/feed?access_token=' + this.get('instagramAccessToken');
+    return this.fetch({
+      withRelated: ['images']
+    }).then(function(user) {
+      var imageIds = user.related('images').map(function(image) {
+        return image.id;
+      });
 
-    return request(url).then(function(resp) {
-      var response = resp[0];
-      var feed = JSON.parse(response.body).data;
-
-      return feed;
+      return new Image().query(function(qb) {
+        return qb.orderBy('created_at', 'desc').limit(15).whereNotIn('id', imageIds);
+      }).fetchAll({
+        withRelated: ['users', 'items', 'comments']
+      });
     });
   }
 

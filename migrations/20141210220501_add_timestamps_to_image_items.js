@@ -2,12 +2,12 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.table('images_items', function(table) {
-    table.increments();
+    table.timestamps();
   });
 };
 
 exports.down = function(knex, Promise) {
   return knex.schema.table('images_items', function(table) {
-    table.dropColumn('id');
+    table.dropColumns('created_at', 'updated_at');
   });
 };

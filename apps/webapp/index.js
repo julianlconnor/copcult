@@ -1,14 +1,14 @@
-var User = require('../api/models/user');
+var _ = require('underscore');
+var path = require('path');
+var Promise = require('bluebird');
+var express = require('express');
+var exphbs = require('express3-handlebars');
+
+
 var Image = require('../api/models/image');
 var settings = require('../../config/settings')();
 
-var _ = require('underscore');
-var path = require('path');
-var exphbs = require('express3-handlebars');
-var express = require('express');
 var app = express();
-
-var browserify = require('browserify-middleware');
 
 var defaultLocal = {
   SERVE_COMPILED: !settings.onDev()
@@ -33,7 +33,15 @@ app.use('/webapp/', express.static(__dirname));
 app.get('/', function(req, res) {
 
   if ( !req.user ) {
-    return renderTemplate(req, res, 'logged_out');
+    return Promise.all([
+      new Image().fetchRecentlyAdded(),
+      new Image().fetchRecentlyTagged()
+    ]).spread(function(addedImages, taggedImages) {
+      return renderTemplate(req, res, 'logged_out', { 
+        recentlyAdded: addedImages.toJSON(),
+        recentlyTagged: taggedImages.toJSON()
+      });
+    });
   }
 
   if ( !req.cookies.accessToken ) {

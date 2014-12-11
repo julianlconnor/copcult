@@ -1,2 +1,7 @@
-<h3>Recently tagged:</h3>
+<div class="recently-tagged row">
+  <h3>Recently tagged:</h3>
+  {{# each recentlyTagged }}
+    {{> profile/image }}
+  {{/ each }}
+</div>
 

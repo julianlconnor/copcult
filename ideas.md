@@ -16,3 +16,7 @@
 - Implement proper client side models and collections.
 - Image uploads for edited items. I.e., user uploads an image from a url or multipart.
 
+
+# BUGS
+- Can comment while logged out
+- Can submit items while logged out

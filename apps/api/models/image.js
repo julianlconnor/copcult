@@ -5,6 +5,7 @@ var settings = require('../../../config/settings')();
 var constants = require('../../../config/constants');
 
 var BaseModel = require('./base');
+var ImageItem = require('./image_item');
 
 var Image = BaseModel.extend({
 
@@ -41,6 +42,30 @@ var Image = BaseModel.extend({
       console.log('data returned from insta', response);
       return data;
     });
+  },
+
+  fetchRecentlyAdded: function() {
+    return this.query(function(qb) {
+      return qb.orderBy('created_at', 'desc').limit(15);
+    }).fetchAll({
+      withRelated: ['users', 'items', 'comments']
+    });
+  },
+
+  fetchRecentlyTagged: function() {
+    return new ImageItem().query(function(qb) {
+      return qb.orderBy('created_at', 'desc').limit(15);
+    }).fetchAll().then(function(imageItems) {
+      var imageIds = imageItems.map(function(imageItem) {
+        return imageItem.imageId;
+      });
+
+      return imageIds;
+    }).then(function(imageIds) {
+      return this.query(function(qb) {
+        return qb.whereIn('id', imageIds);
+      }).fetchAll();
+    }.bind(this));
   }
 
 }, {
