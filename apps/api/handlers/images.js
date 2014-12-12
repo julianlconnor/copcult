@@ -70,7 +70,7 @@ module.exports = {
     }
 
     if ( !/\/$/.test(url) ) {
-      shortCode += '/';
+      url += '/';
     }
 
     /**

@@ -1,32 +1,17 @@
 /** @jsx React.DOM */
 
-var ajax = require('ajax');
 var React = require('react');
 
 var ImageListItem = require('./image_list_item');
-var ImageCollection = require('../collections/images');
 
-var Images = React.createClass({
+var ImageList = React.createClass({
 
-  getInitialState: function() {
-    return {
-      images: new ImageCollection()
-    };
-  },
-
-  componentWillMount: function() {
-    return ajax({
-      url: '/api/v1/users/' + jaded.user.id + '/images',
-      type: 'GET'
-    }).then(function(response) {
-      this.setState({
-        images: new ImageCollection(response.data)
-      });
-    }.bind(this));
-  },
+  mixins: [
+    React.BackboneMixin('imageCollection')
+  ],
 
   render: function() {
-    var images = this.state.images.map(function(image) {
+    var images = this.props.imageCollection.map(function(image) {
       return <ImageListItem model={image} key={image.id} />;
     });
 
@@ -37,4 +22,4 @@ var Images = React.createClass({
 
 });
 
-module.exports = Images;
+module.exports = ImageList;
