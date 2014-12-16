@@ -33,7 +33,13 @@ var User = BaseModel.extend({
       });
 
       return new Image().query(function(qb) {
-        return qb.orderBy('created_at', 'desc').limit(15).whereNotIn('id', imageIds);
+        var promise = qb.orderBy('created_at', 'desc').limit(15);
+        
+        if ( imageIds.length ) {
+          promise.whereNotIn('id', imageIds);
+        }
+
+        return promise;
       }).fetchAll({
         withRelated: ['users', 'items', 'comments']
       });
