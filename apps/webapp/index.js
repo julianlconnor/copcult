@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
     ]).spread(function(addedImages, taggedImages) {
       return renderTemplate(req, res, 'logged_out', { 
         recentlyAdded: addedImages.toJSON(),
-        recentlyTagged: taggedImages.toJSON()
+        recentlyTagged: [] //taggedImages.toJSON()
       });
     });
   }
