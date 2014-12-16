@@ -16,9 +16,6 @@ var exphbs = require('express-handlebars');
 
 var settings = require('./config/settings')();
 
-// small touch to see if deploying still works.
-//
-
 /**
 * Rack style apps.
 */
