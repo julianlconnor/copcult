@@ -24,13 +24,17 @@ module.exports = function() {
       }
     }
 
-    knex = require('knex')({
-      client: 'pg',
-      debug: debug,
-      connection: connection
-    });
-    bookshelf = require('bookshelf')(knex);
-    bookshelf.plugin('registry');
+    try {
+      knex = require('knex')({
+        client: 'pg',
+        debug: debug,
+        connection: connection
+      });
+      bookshelf = require('bookshelf')(knex);
+      bookshelf.plugin('registry');
+    } catch (err) {
+      console.error('There was an error connecting.', err);
+    }
   }
 
   return {
