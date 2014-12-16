@@ -27,7 +27,7 @@ module.exports = function() {
     try {
       knex = require('knex')({
         client: 'pg',
-        debug: debug,
+        debug: true,
         connection: connection
       });
       bookshelf = require('bookshelf')(knex);
