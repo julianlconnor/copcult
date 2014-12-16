@@ -2,7 +2,7 @@ var _ = require('underscore');
 var path = require('path');
 var Promise = require('bluebird');
 var express = require('express');
-var exphbs = require('express3-handlebars');
+var exphbs = require('express-handlebars');
 
 
 var Image = require('../api/models/image');

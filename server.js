@@ -12,7 +12,7 @@ require('./config/passport_strategies');
 
 var RedisStore = require('connect-redis')(express);
 
-var exphbs = require('express3-handlebars');
+var exphbs = require('express-handlebars');
 
 var settings = require('./config/settings')();
 
