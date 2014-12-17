@@ -54,10 +54,10 @@ var Image = BaseModel.extend({
 
   fetchRecentlyTagged: function() {
     return new ImageItem().query(function(qb) {
-      return qb.orderBy('created_at', 'desc').limit(15);
+      return qb.orderBy('updated_at', 'desc').whereNotNull('updated_at').limit(15);
     }).fetchAll().then(function(imageItems) {
       var imageIds = imageItems.map(function(imageItem) {
-        return imageItem.imageId;
+        return imageItem.get('imageId');
       });
 
       return imageIds;

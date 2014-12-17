@@ -10,6 +10,8 @@ var BaseModel = Backbone.Model.extend({
   ajax: function(options) {
     return ajax(options).then(function(response) {
       this.set(this.parse(response.data));
+
+      return response;
     }.bind(this));
   }
 

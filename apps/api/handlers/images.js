@@ -4,6 +4,8 @@ var materialistic = require('materialistic');
 
 var Image = require('../models/image');
 var ImageUser = require('../models/image_user');
+var Item = require('../models/item');
+var ImageItem = require('../models/image_item');
 
 module.exports = {
 
@@ -42,7 +44,14 @@ module.exports = {
         return Promise.resolve({ url: url });
       })
     ]).spread(function(image, itemAttrs) {
-      return image.related('items').create(itemAttrs).yield(image);
+      return new Item(itemAttrs).findOrCreate().then(function(item) {
+        return new ImageItem({
+          itemId: item.id,
+          imageId: image.id
+        }).save();
+      }).then(function() {
+        return image;
+      });
     }).then(function(image) {
       return image.fetch({
         withRelated: ['users', 'items', 'items.brand', 'comments']
@@ -92,8 +101,8 @@ module.exports = {
         image.set(Image.parseImageData(data));
         return image.save().then(function() {
           return new ImageUser({
-            user_id: userId,
-            image_id: image.get('id')
+            userId: userId,
+            imageId: image.get('id')
           }).findOrCreate();
         }).then(function() {
           res.json({ data: image.toJSON() });
