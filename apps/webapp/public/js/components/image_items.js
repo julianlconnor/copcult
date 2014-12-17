@@ -11,8 +11,8 @@ var ImageItems = React.createClass({
 
     if ( this.props.items.length ) {
       var items = this.props.items.map(function(item) {
-        return <Item itemModel={item} key={item.id} />;
-      });
+        return <Item itemModel={item} key={item.id} onDelete={this.props.onDelete.bind(null, item)} />;
+      }.bind(this));
       
       outlet = (
         <div className="items">

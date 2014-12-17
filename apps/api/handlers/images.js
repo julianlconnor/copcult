@@ -161,6 +161,27 @@ module.exports = {
       console.error('Error while fetching comments.', err);
       res.send(500);
     });
+  },
+
+  removeItem: function(req, res) {
+    var itemId = req.param('itemId');
+    var imageId = req.param('imageId');
+
+    return new ImageItem({
+      itemId: itemId,
+      imageId: imageId
+    }).fetch().then(function(association) {
+      return new ImageItem({ id: association.id }).destroy();
+    }).then(function() {
+      return new Image({ id: imageId }).fetch({
+        withRelated: ['users', 'items', 'items.brand', 'comments']
+      });
+    }).then(function(image) {
+      return res.json({ data: image.toJSON() });
+    }).catch(function(err) {
+      console.error('There was an error removing the association', err);
+      return res.send(500);
+    });
   }
 
 };

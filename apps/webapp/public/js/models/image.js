@@ -10,18 +10,29 @@ var Image = BaseModel.extend({
     comments: new CommentCollection()
   },
 
+  urlRoot: function() {
+    return '/api/v1/images/' + this.id;
+  },
+
   fetch: function() {
     return this.ajax({
       type: 'GET',
-      url: '/api/v1/images/' + this.id
+      url: this.urlRoot()
     });
   },
 
   addItem: function(data) {
     return this.ajax({
       type: 'POST',
-      url: '/api/v1/images/' + this.id + '/items',
+      url: this.urlRoot() + '/items',
       data: data
+    });
+  },
+
+  deleteItem: function(item) {
+    return this.ajax({
+      type: 'DELETE',
+      url: this.urlRoot() + '/items/' + item.id
     });
   },
 

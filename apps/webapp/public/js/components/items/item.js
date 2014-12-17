@@ -48,7 +48,7 @@ var Item = React.createClass({
           </div>
         </a>
         <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>
-          <ModalItem itemModel={item} />
+          <ModalItem itemModel={item} onDelete={this.props.onDelete} />
         </Modal>
       </div>
     );

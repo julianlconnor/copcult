@@ -55,6 +55,7 @@ app.get('/images', images.get);
 app.get('/images/:imageId', images.getOne);
 app.post('/images', images.post);
 app.post('/images/:imageId/items', images.addItem);
+app.delete('/images/:imageId/items/:itemId', images.removeItem);
 
 app.get('/images/:imageId/comments', images.getComments);
 app.post('/images/:imageId/comments', images.addComment);

@@ -19,6 +19,10 @@ var ShowImage = React.createClass({
     return this.props.imageModel.addItem(data);
   },
 
+  deleteItem: function(item) {
+    return this.props.imageModel.deleteItem(item);
+  },
+
   render: function() {
     return (
       <div className="row show-image">
@@ -28,7 +32,7 @@ var ShowImage = React.createClass({
           <ImageComments imageId={this.props.imageModel.id} comments={this.props.imageModel.get('comments')} />
         </div>
         <div className="five columns">
-          <ImageItems items={this.props.imageModel.get('items')} />
+          <ImageItems items={this.props.imageModel.get('items')} onDelete={this.deleteItem} />
           <AddItem handleSubmit={this.addItem} />
         </div>
       </div>

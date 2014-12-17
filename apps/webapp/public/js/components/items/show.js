@@ -20,6 +20,7 @@ var ShowItem = React.createClass({
         <div className="top-wrapper">
           <h4>{item.get('name')} {brandEl}</h4>
           <a className="small" onClick={this.props.onEdit}>Item missing data? Click here to edit.</a>
+          <a className="small" onClick={this.props.onDelete}>Delete</a>
         </div>
 
         <img src={item.get('image')} />
